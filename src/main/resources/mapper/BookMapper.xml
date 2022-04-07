@@ -11,6 +11,6 @@
 
     <select id="getAllBooks" resultMap="BookMapper">
         SELECT `id`, `name`, `image`, `desc`
-        FROM Book
+        FROM book
     </select>
 </mapper>
