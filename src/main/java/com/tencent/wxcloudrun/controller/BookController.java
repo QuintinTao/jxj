@@ -1,7 +1,9 @@
 package com.tencent.wxcloudrun.controller;
 
+import com.tencent.wxcloudrun.dto.BookListDto;
 import com.tencent.wxcloudrun.model.Book;
 import com.tencent.wxcloudrun.service.BookService;
+import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.tencent.wxcloudrun.config.ApiResponse;
@@ -37,8 +39,10 @@ public class BookController {
   ApiResponse get() {
     logger.info("/api/get all books get request");
     List<Book> result = bookService.getAllBooks();
-
-    return ApiResponse.ok(result);
+    BookListDto dto = new BookListDto();
+    dto.setBooks(result);
+    dto.setCount(result.size());
+    return ApiResponse.ok(dto);
   }
 
 
