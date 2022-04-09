@@ -38,4 +38,20 @@ public class DetailController {
         dto.setCount(result.size());
         return ApiResponse.ok(dto);
     }
+
+    /**
+     * 获取当前计数
+     * @return API response json
+     */
+    @GetMapping(value = "/api/getReviewItems")
+    ApiResponse getReviewItems(Integer itemId, Integer familiar) {
+        logger.info("/api/get all reviewItems with itemId" + itemId);
+        List<Detail> result = detailService.findReviewDetailByItemId(itemId, familiar);
+        DetailListDto dto = new DetailListDto();
+        dto.setDetails(result);
+        dto.setCount(result.size());
+        return ApiResponse.ok(dto);
+    }
+
+
 }
