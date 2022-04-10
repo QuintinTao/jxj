@@ -31,9 +31,9 @@ public class ReviewController {
      * @return API response json
      */
     @GetMapping(value = "/api/findReviewByBookId")
-    ApiResponse get(Integer bookId, Integer userId) {
-        logger.info("/api/findReviewByBookId bookId:" + bookId + "userId:" + userId);
-        List<Review> result = reviewService.findReviewByBookId(bookId, userId);
+    ApiResponse get(Integer bookId, Integer userId, Integer familiar) {
+        logger.info("/api/findReviewByBookId bookId:" + bookId + "userId:" + userId + ",familiar:" + familiar);
+        List<Review> result = reviewService.findReviewByBookId(bookId, userId, familiar);
         ReviewListDto dto = new ReviewListDto();
         dto.setReviews(result);
         dto.setCount(result.size());
