@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tencent.wxcloudrun.dao.PlanMapper">
+
+    <resultMap id="PlanMapper" type="com.tencent.wxcloudrun.model.Plan">
+        <id property="id" column="id"/>
+        <result property="startTime" column="start_time" javaType="java.lang.String" />
+        <result property="userId" column="user_id" javaType="java.lang.Integer" />
+        <result property="endTime" column="end_time" javaType="java.lang.String" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.tencent.wxcloudrun.model.Plan">
+        insert into plan (user_id, start_time, end_time)
+        values (#{userId,jdbcType=INTEGER}, #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR})
+    </insert>
+</mapper>
