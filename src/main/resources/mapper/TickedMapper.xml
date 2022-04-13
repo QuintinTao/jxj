@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tencent.wxcloudrun.dao.TickedMapper">
+
+    <resultMap id="TickedMapper" type="com.tencent.wxcloudrun.model.Ticked">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id" javaType="java.lang.Integer" />
+        <result property="tickedDate" column="ticked_date" javaType="java.lang.String" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.tencent.wxcloudrun.model.Ticked">
+        insert into ticked (user_id, ticked_date)
+        values (#{userId,jdbcType=INTEGER}, #{tickedDate,jdbcType=VARCHAR})
+    </insert>
+
+    <select id="findTodayTicked" resultMap="TickedMapper">
+        SELECT `id`, `ticked_date`, `user_id` from ticked
+        where from_unixtime(ticked_date/1000,'%Y-%m-%d') =
+        from_unixtime(unix_timestamp(now()),'%Y-%m-%d');
+    </select>
+
+
+    <select id="findTickedByUserId" resultMap="TickedMapper" parameterType="java.lang.Integer">
+        SELECT `id`, `ticked_date`,`user_id`
+        FROM ticked where user_id = #{userId}
+    </select>
+</mapper>
