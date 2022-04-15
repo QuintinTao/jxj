@@ -1,6 +1,7 @@
 package com.tencent.wxcloudrun.service.impl;
 
 import com.tencent.wxcloudrun.dao.ExamMapper;
+import com.tencent.wxcloudrun.dto.ExamResultDto;
 import com.tencent.wxcloudrun.model.Exam;
 import com.tencent.wxcloudrun.service.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,8 @@ public class ExamServiceImpl implements ExamService {
 
 
     @Override
-    public List<Exam> findExamByExamResultId(Integer examId, Integer userId, Integer familiar, String content) {
+    public ExamResultDto findExamByExamResultId(Integer examId, Integer userId, Integer familiar, String content) {
+        ExamResultDto resultDto = new ExamResultDto();
         if(familiar == null) familiar = 0;
         int replaceIndex = 0;
         Exam exam = new com.tencent.wxcloudrun.model.Exam();
@@ -52,13 +54,36 @@ public class ExamServiceImpl implements ExamService {
         } else if(familiar == 1){ //模糊 4替换1
             replaceIndex = 5;
         } else { //不清楚，就不替换了
-            return exams;
+//            return exams;
         }
+        String[] array = content.split(";");
+        int score = 0;
+        int totalScore = 0;
+        int i = 0;
         for (Exam examBean:
                 exams) {
-            examBean.setContent(getResult(examBean.getContent(), replaceIndex));
+            //条记录
+            String realAns = getResult(examBean.getContent(), replaceIndex);
+            String[] arrayReals = realAns.split(",");
+            totalScore = totalScore + arrayReals.length;
+            int j = 0;
+            for(String s : arrayReals){
+
+                if(i >= array.length) continue;
+                String[] tempRealArray = array[i].split(",");
+                if(tempRealArray.length > 0 && j >= tempRealArray.length) continue;
+                //每一个答案
+                if(s.equals(array[i].split(",")[j])){
+                    score ++;
+                }
+                j ++;
+            }
+            i ++;
+
         }
-        return exams;
+        resultDto.setScore(score);
+        resultDto.setTotalScore(totalScore);
+        return resultDto;
     }
 
     private String extractContent(String str, int replaceIndex){

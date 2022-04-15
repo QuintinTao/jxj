@@ -2,6 +2,7 @@ package com.tencent.wxcloudrun.controller;
 
 import com.tencent.wxcloudrun.config.ApiResponse;
 import com.tencent.wxcloudrun.dto.ExamListDto;
+import com.tencent.wxcloudrun.dto.ExamResultDto;
 import com.tencent.wxcloudrun.dto.ReviewListDto;
 import com.tencent.wxcloudrun.model.Exam;
 import com.tencent.wxcloudrun.model.Review;
@@ -48,11 +49,9 @@ public class ExamController {
     ApiResponse findExamByExamResultId(Integer examId, Integer userId, Integer familiar, String content) {
         logger.info("/api/findReviewByBookId examId:" + examId + "userId:" + userId + ",familiar:" + familiar);
         logger.info("/api/findReviewByBookId content:" + content);
-        List<Exam> result = examService.findExamByExamResultId(examId, userId, familiar, content);
-        ExamListDto dto = new ExamListDto();
-        dto.setExams(result);
-        dto.setCount(result.size());
-        return ApiResponse.ok(dto);
+        content = "人,知,法,阴,和,数,饮,起,有,不,劳,能,神,而,其,度,岁,今,之,然,以,浆,妄,醉,入,以,其,以,其,不,满,时,务,其, ,生,起,节,半,衰;水,五,府,而,故;;;;";
+        ExamResultDto result = examService.findExamByExamResultId(examId, userId, familiar, content);
+        return ApiResponse.ok(result);
     }
 
 }
