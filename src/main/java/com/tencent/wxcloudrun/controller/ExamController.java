@@ -40,4 +40,18 @@ public class ExamController {
         return ApiResponse.ok(dto);
     }
 
+    /**
+     * 根据book 获取Reviwe内容
+     * @return API response json
+     */
+    @GetMapping(value = "/api/findExamByExamResultId")
+    ApiResponse findExamByExamResultId(Integer examId, Integer userId, Integer familiar) {
+        logger.info("/api/findReviewByBookId examId:" + examId + "userId:" + userId + ",familiar:" + familiar);
+        List<Exam> result = examService.findExamByExamResultId(examId, userId, familiar);
+        ExamListDto dto = new ExamListDto();
+        dto.setExams(result);
+        dto.setCount(result.size());
+        return ApiResponse.ok(dto);
+    }
+
 }
