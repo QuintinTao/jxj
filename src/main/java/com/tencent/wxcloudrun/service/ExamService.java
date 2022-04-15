@@ -9,5 +9,5 @@ public interface ExamService {
     List<Exam> findExamByExamId(Integer examId, Integer userId, Integer familiar);
 
 
-    List<Exam> findExamByExamResultId(Integer examId, Integer userId, Integer familiar);
+    List<Exam> findExamByExamResultId(Integer examId, Integer userId, Integer familiar, String content);
 }

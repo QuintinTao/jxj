@@ -45,9 +45,10 @@ public class ExamController {
      * @return API response json
      */
     @GetMapping(value = "/api/findExamByExamResultId")
-    ApiResponse findExamByExamResultId(Integer examId, Integer userId, Integer familiar) {
+    ApiResponse findExamByExamResultId(Integer examId, Integer userId, Integer familiar, String content) {
         logger.info("/api/findReviewByBookId examId:" + examId + "userId:" + userId + ",familiar:" + familiar);
-        List<Exam> result = examService.findExamByExamResultId(examId, userId, familiar);
+        logger.info("/api/findReviewByBookId content:" + content);
+        List<Exam> result = examService.findExamByExamResultId(examId, userId, familiar, content);
         ExamListDto dto = new ExamListDto();
         dto.setExams(result);
         dto.setCount(result.size());

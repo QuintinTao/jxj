@@ -40,7 +40,7 @@ public class ExamServiceImpl implements ExamService {
 
 
     @Override
-    public List<Exam> findExamByExamResultId(Integer examId, Integer userId, Integer familiar) {
+    public List<Exam> findExamByExamResultId(Integer examId, Integer userId, Integer familiar, String content) {
         if(familiar == null) familiar = 0;
         int replaceIndex = 0;
         Exam exam = new com.tencent.wxcloudrun.model.Exam();
