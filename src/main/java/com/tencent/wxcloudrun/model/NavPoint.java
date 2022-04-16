@@ -9,6 +9,6 @@ public class NavPoint {
     private String pointName;
     private String latitude;
     private String longitude;
-    private String image;
+    private String pointImage;
     private String address;
 }
