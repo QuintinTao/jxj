@@ -1,7 +1,12 @@
 package com.tencent.wxcloudrun.service;
 
-import com.tencent.wxcloudrun.model.Plan;
+import com.tencent.wxcloudrun.model.NavPoint;
 
-public interface PlanService {
-    int insert(Plan plan);
+import java.util.List;
+
+public interface NavPointService {
+
+    int insert(NavPoint point);
+
+    List<NavPoint> findAllNavPoints();
 }

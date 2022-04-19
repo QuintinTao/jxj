@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--解决idea thymeleaf 表达式模板报红波浪线-->
+<!--suppress ALL -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- 引入公用部分 -->
+    <script th:replace="common/head::static"></script>
+    <!-- 样式 -->
+    <link th:href="@{/es/css/import.css}" rel="stylesheet" type="text/css"/>
+
+</head>
+<body>
+<div class="layui-row layui-col-space15">
+    <!-- 操作表单 -->
+    <div class="layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-card-header">新增GPS坐标</div>
+            <div class="layui-card-body">
+                <form id="importForm" class="layui-form layui-form-pane">
+                    <div class="layui-form-item  layui-form-text">
+                        <label class="layui-form-label">坐标名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="pointName"  autocomplete="off"
+                                   placeholder="坐标名称如：相思湖"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item  layui-form-text">
+                        <label class="layui-form-label">地址</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="address"  autocomplete="off"
+                                   placeholder="坐标的地址，如：广西壮族自治区桂林市灵川县灵田镇桂林电子科技大学花江校区图书馆"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item  layui-form-text">
+                        <label class="layui-form-label">坐标图片</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="pointImage"  autocomplete="off"
+                                   placeholder="坐标图片：/images/xsh.png"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item  layui-form-text">
+                        <label class="layui-form-label">经度</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="latitude"  autocomplete="off"
+                                   placeholder="经度：25.313160971311508"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item  layui-form-text">
+                        <label class="layui-form-label">纬度</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="longitude"  autocomplete="off"
+                                   placeholder="纬度：110.41848787106574"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item  layui-form-text">
+                        <label class="layui-form-label">景点故事</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="story"  autocomplete="off"
+                                   placeholder="故事内容：从前有一个，最多128个字，别贪多"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">分类</label>
+                        <div class="layui-input-block">
+                            <select name="cid" lay-verify="required">
+                                <option value=""></option>
+                                <option value="1">游在桂电</option>
+                                <option value="2">学在桂电</option>
+                                <option value="3">食在桂电</option>
+                                <option value="4">行政楼</option>
+                                <option value="5">进入桂电</option>
+                                <option value="6">喝奶茶</option>
+                                <option value="7">我爱运动</option>
+                                <option value="8">会生活</option>
+                                <option value="9">其他</option>
+                                <option value="10">回宿舍</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <a class="layui-btn" onclick="sysFormSave()">确定</a>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<!-- js -->
+<script th:src="@{/es/js/import.js}"></script>
+</html>

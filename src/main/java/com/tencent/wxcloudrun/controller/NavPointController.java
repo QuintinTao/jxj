@@ -2,12 +2,11 @@ package com.tencent.wxcloudrun.controller;
 
 import com.tencent.wxcloudrun.config.ApiResponse;
 import com.tencent.wxcloudrun.dto.NavCategoryExtListDto;
-import com.tencent.wxcloudrun.dto.TickedListDto;
+import com.tencent.wxcloudrun.dto.NavPointsListDto;
 import com.tencent.wxcloudrun.model.NavPoint;
-import com.tencent.wxcloudrun.model.Ticked;
 import com.tencent.wxcloudrun.model.ext.NavCategoryExt;
 import com.tencent.wxcloudrun.service.NavCategoryService;
-import com.tencent.wxcloudrun.service.TickedService;
+import com.tencent.wxcloudrun.service.NavPointService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +18,14 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @RestController
-public class NavCategoryController {
+public class NavPointController {
 
-    final NavCategoryService navCategoryService;
+    final NavPointService navPointService;
     final Logger logger;
 
-    public NavCategoryController(@Autowired NavCategoryService navCategoryService) {
-        this.navCategoryService = navCategoryService;
-        this.logger = LoggerFactory.getLogger(NavCategoryController.class);
+    public NavPointController(@Autowired NavPointService navPointService) {
+        this.navPointService = navPointService;
+        this.logger = LoggerFactory.getLogger(NavPointController.class);
     }
 
     @GetMapping("/es/import")
@@ -35,20 +34,25 @@ public class NavCategoryController {
     }
 
     @PostMapping("/es/impData")
-    public Result<ImportBean> impData(NavPoint navPoint) throws Exception {
-        LOGGER.info("importBean" + entityVo.toString());
-        SearchResult result = JacksonTool.toEntity(entityVo.getContent(), SearchResult.class);
-        List<String> hits = extraData(result.getHits());
-        return esBeatService.bulkOpt(hits, entityVo);
+    public ApiResponse impData(NavPoint navPoint) throws Exception {
+        logger.info("NavPoint" + navPoint.toString());
+        int result =  navPointService.insert(navPoint);
+        return ApiResponse.ok(result);
     }
-    @GetMapping(value = "/api/findAllNavPoints")
+
+    @GetMapping("/es/list")
+    public ModelAndView list(){
+        return new ModelAndView("sys/authority/authority");
+    }
+
+    @GetMapping(value = "/api/findNavPoints")
     ApiResponse findAllNavPoints() {
-        logger.info("/api/findAllNavPoints");
-        List<NavCategoryExt> result = navCategoryService.findAllNavPoints();
-        NavCategoryExtListDto dto = new NavCategoryExtListDto();
-        dto.setCategories(result);
+        logger.info("/api/findNavPoints");
+        List<NavPoint> result = navPointService.findAllNavPoints();
+        NavPointsListDto dto = new NavPointsListDto();
+        dto.setPoints(result);
         dto.setCount(result.size());
-        return ApiResponse.ok(dto);
+        return ApiResponse.ok(result);
     }
 
 }

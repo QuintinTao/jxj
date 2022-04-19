@@ -11,4 +11,5 @@ public class NavPoint {
     private String longitude;
     private String pointImage;
     private String address;
+    private String story;
 }

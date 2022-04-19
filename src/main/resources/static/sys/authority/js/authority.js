@@ -10,38 +10,41 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate','tree', 'util'], funct
 
     tableIns = table.render({
         elem: '#authorityTable'
-        , url: ctx + '/sys/sysAuthority/page'
-        , method: 'POST'
+        , url: ctx + '/api/findNavPoints'
+        , method: 'get'
         //请求前参数处理
         , request: {
             pageName: 'page' //页码的参数名称，默认：page
             , limitName: 'rows' //每页数据量的参数名，默认：limit
         }
         , response: {
-            statusName: 'flag' //规定数据状态的字段名称，默认：code
-            , statusCode: true //规定成功的状态码，默认：0
+            statusName: 'code' //规定数据状态的字段名称，默认：code
+            , statusCode: 0 //规定成功的状态码，默认：0
             , msgName: 'msg' //规定状态信息的字段名称，默认：msg
-            , countName: 'records' //规定数据总数的字段名称，默认：count
-            , dataName: 'rows' //规定数据列表的字段名称，默认：data
+            , countName: 'count' //规定数据总数的字段名称，默认：count
+            , dataName: 'data' //规定数据列表的字段名称，默认：data
         }
         //响应后数据处理
         , parseData: function (res) { //res 即为原始返回的数据
             var data = res.data;
             return {
-                "flag": res.flag, //解析接口状态
-                "msg": res.msg, //解析提示文本
-                "records": data.records, //解析数据长度
-                "rows": data.rows //解析数据列表
+                "code": 0, //解析接口状态
+                "msg": "", //解析提示文本
+                "count": res.count, //解析数据长度
+                "data": data //解析数据列表
             };
         }
         , toolbar: '#authorityTableToolbarDemo'
         , title: '用户列表'
         , cols: [[
-            {field: 'authorityId', title: 'ID', hide: true}
-            , {field: 'authorityName', title: '权限名称'}
-            , {field: 'authorityContent', title: '权限内容'}
-            , {field: 'authorityRemark', title: '权限描述'}
-            , {fixed: 'right', title: '操作', toolbar: '#authorityTableBarDemo'}
+            {field: 'pid', title: 'ID', hide: true}
+            , {field: 'cid', title: '分类ID'}
+            , {field: 'pointName', title: '景点名称'}
+            , {field: 'latitude', title: '经度'}
+            , {field: 'longitude', title: '纬度'}
+            , {field: 'pointImage', title: '图片'}
+            , {field: 'address', title: '地址'}
+            , {field: 'story', title: '故事'}
         ]]
         , defaultToolbar: ['', '', '']
         , page: true
