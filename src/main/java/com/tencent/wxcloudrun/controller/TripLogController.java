@@ -50,7 +50,7 @@ public class TripLogController {
         List<TripLog> log = tripLogService.findTopTripLogs();
         p.setLogs(log);
         p.setCount(log.size());
-        return ApiResponse.ok(log);
+        return ApiResponse.ok(p);
     }
 
 }
