@@ -28,6 +28,7 @@
             <result property="cid" column="cid" javaType="java.lang.Integer"></result>
             <result property="pointImage" column="point_image" javaType="java.lang.String"></result>
             <result property="address" column="address" javaType="java.lang.String"></result>
+            <result property="story" column="story" javaType="java.lang.String"></result>
         </collection>
     </resultMap>
 
