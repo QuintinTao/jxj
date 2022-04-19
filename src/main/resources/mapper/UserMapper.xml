@@ -6,7 +6,7 @@
         <id property="id" column="id"/>
         <result property="openid" column="openid" javaType="java.lang.String" />
         <result property="sessionKey" column="session_key" javaType="java.lang.String" />
-        <result property="weight" column="weight" javaType="java.math.decimal" />
+        <result property="weight" column="weight" javaType="java.math.BigDecimal" />
         <result property="height" column="height" javaType="java.lang.Integer" />
         <result property="sex" column="sex" javaType="java.lang.String" />
         <result property="realName" column="real_name" javaType="java.lang.String" />
