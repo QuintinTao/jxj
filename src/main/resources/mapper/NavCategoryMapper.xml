@@ -10,7 +10,7 @@
         <result property="sortc" column="sortc" javaType="java.lang.Integer" />
     </resultMap>
     <select id="findAllNavPoints" resultMap="navCategoryExtMapper">
-        SELECT a.`id`, a.`name`, a.`scale`, b.point_name, b.longitude, b.latitude, b.address,b.point_image
+        SELECT a.`id`, a.`name`, a.`scale`, b.point_name, b.longitude, b.latitude, b.address,b.point_image, b.story
         from nav_category a left join nav_point b
         on a.id = b.cid order by a.sortc asc;
     </select>
