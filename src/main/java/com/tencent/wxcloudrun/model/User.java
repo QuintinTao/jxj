@@ -5,6 +5,16 @@ import java.math.BigDecimal;
 
 public class User {
 
+    private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     private String openid;
 
     private String session_key;
@@ -92,7 +102,19 @@ public class User {
 
     private String hobby;
 
+
+
     private String enjoyColor;
 
     private String dressingStyle;
+
+    private String realName;
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
 }
