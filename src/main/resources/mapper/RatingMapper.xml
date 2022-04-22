@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.tencent.wxcloudrun.dao.PicMapper">
+<mapper namespace="com.tencent.wxcloudrun.dao.RatingMapper">
 
-    <resultMap id="PicMapper" type="com.tencent.wxcloudrun.model.Pic">
+    <resultMap id="RatingMapper" type="com.tencent.wxcloudrun.model.Rating">
         <id property="id" column="id"/>
-        <result property="cid" column="cid" javaType="java.lang.Integer" />
-        <result property="material" column="material" javaType="java.lang.Integer" />
-        <result property="colorSys" column="color_sys" javaType="java.lang.Integer" />
-        <result property="season" column="season" javaType="java.lang.Integer" />
+        <result property="uid" column="uid" javaType="java.lang.Integer" />
+        <result property="pid" column="pid" javaType="java.lang.Integer" />
+        <result property="score" column="score" javaType="java.lang.Float" />
     </resultMap>
 
-    <insert id="insert" parameterType="com.tencent.wxcloudrun.model.Pic">
-        insert into pic (cid, material, colorSys,season)
-        values (#{cid,jdbcType=INTEGER}, #{material,jdbcType=INTEGER}, #{colorSys,jdbcType=INTEGER}, #{season,jdbcType=INTEGER})
+    <insert id="insert" parameterType="com.tencent.wxcloudrun.model.Rating">
+        insert into rating (uid, pid, score)
+        values (#{uid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{score,jdbcType=FLOAT})
     </insert>
-    <select id="findPicByCid" resultMap="PicMapper" parameterType="java.lang.Integer">
-        SELECT `id`, `cid`, `material`, `colorSys`, `season`
-        FROM pic where cid = #{cid}
+    <select id="findAll" resultMap="RatingMapper">
+        SELECT `id`, `uid`, `pid`, `score`
+        FROM rating
     </select>
 </mapper>

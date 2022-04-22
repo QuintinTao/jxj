@@ -1,13 +1,15 @@
 package com.tencent.wxcloudrun.dao;
 
-import com.tencent.wxcloudrun.model.Pic;
+import com.tencent.wxcloudrun.model.Rating;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 @Mapper
-public interface PicMapper {
+public interface RatingMapper {
 
-    List<Pic> findPicByCid(Integer cid);
+    List<Rating> findAll();
+
+    int insert(Rating rating);
 
 }

@@ -1,13 +1,14 @@
 package com.tencent.wxcloudrun.dto;
 
-import com.tencent.wxcloudrun.model.Book;
+import com.tencent.wxcloudrun.model.Pic;
 import lombok.Data;
 
 import java.util.List;
-@Data
-public class BookListDto {
 
-    private List<Book> books;
+@Data
+public class PicListDto {
+
+    private List<Pic> pics;
 
     private int count;
 }

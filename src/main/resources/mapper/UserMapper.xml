@@ -34,7 +34,8 @@
     </update>
 
     <select id="findUserByOpenId" resultMap="UserMapper" parameterType="java.lang.String">
-        SELECT `id`, `openid`, `session_key`
+        SELECT `id`, `openid`, `session_key`, `weight`, `height`, `sex`
+        , `realName`, `hobby`, `enjoyColor`, `dressingStyle`
         FROM user where openid = #{openid}
     </select>
 </mapper>

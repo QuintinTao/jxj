@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -57,6 +58,27 @@ public class LoginController {
     }
     return ApiResponse.ok(count);
   }
+
+  @GetMapping(value = "/api/addUser")
+  ApiResponse addUser(String openid, Integer height, String weight,
+                      String sex, String hobby, String enjoyColor, String dressingStyle){
+      User user = new User();
+      user.setHeight(height);
+      user.setDressingStyle(dressingStyle);
+      user.setOpenid(openid);
+      user.setHobby(hobby);
+      user.setEnjoyColor(enjoyColor);
+      user.setSex(sex);
+      user.setWeight(new BigDecimal(weight));
+      int result =  userService.insertOrUpdate(user);
+    return ApiResponse.ok(result);
+  }
+
+    @GetMapping(value = "/api/findUserByOpenId")
+    ApiResponse findUserByOpenId(String openid){
+        List<User> list =  userService.findUserByOpenId(openid);
+        return ApiResponse.ok(list);
+    }
 
 
 //  /**

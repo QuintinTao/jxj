@@ -1,58 +1,69 @@
 package com.tencent.wxcloudrun.controller;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tencent.wxcloudrun.config.ApiResponse;
-import com.tencent.wxcloudrun.dto.ReviewListDto;
+import com.tencent.wxcloudrun.dto.PicListDto;
 import com.tencent.wxcloudrun.dto.TickedListDto;
-import com.tencent.wxcloudrun.model.Plan;
-import com.tencent.wxcloudrun.model.Review;
+import com.tencent.wxcloudrun.model.Pic;
 import com.tencent.wxcloudrun.model.Ticked;
-import com.tencent.wxcloudrun.service.PlanService;
+import com.tencent.wxcloudrun.model.User;
+import com.tencent.wxcloudrun.service.PicService;
 import com.tencent.wxcloudrun.service.TickedService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class TickedController {
+public class PicController {
 
-    final TickedService tickedService;
+    final PicService picService;
     final Logger logger;
 
-    public TickedController(@Autowired TickedService tickedService) {
-        this.tickedService = tickedService;
-        this.logger = LoggerFactory.getLogger(CounterController.class);
+    public PicController(@Autowired PicService picService) {
+        this.picService = picService;
+        this.logger = LoggerFactory.getLogger(PicController.class);
     }
 
-    /**
-     * 根据book 获取Reviwe内容
-     * @return API response json
-     */
-    @GetMapping(value = "/api/addTicked")
-    ApiResponse addTicked(String tickedDate, Integer userId) {
-        logger.info("/api/addTicked tickedDate:" + tickedDate + "userId:" + userId);
-        List<Ticked> list = tickedService.findTodayTicked();
-        if(list != null && list.size() > 0){
-            return ApiResponse.ok(100);//已打卡
-        }
-        Ticked t = new Ticked();
-        t.setUserId(userId);
-        t.setTickedDate(tickedDate);
-        return ApiResponse.ok(tickedService.insert(t));
-    }
-
-    @GetMapping(value = "/api/findTickedByUserId")
-    ApiResponse get(Integer userId) {
-        logger.info("/api/findTickedByUserId userId:" + userId );
-        List<Ticked> result = tickedService.findTickedByUserId(userId);
-        TickedListDto dto = new TickedListDto();
-        dto.setTicks(result);
-        dto.setCount(result.size());
+    @GetMapping(value = "/api/findPicByCid")
+    ApiResponse findPicByCid(Integer cid) {
+        logger.info("/api/findPicByCid cid:" + cid);
+        List<Pic> list = picService.findPicByCid(cid);
+        PicListDto dto = new PicListDto();
+        dto.setPics(list);
+        dto.setCount(list.size());
         return ApiResponse.ok(dto);
+    }
+
+    @GetMapping(value = "/api/findTopSimPic")
+//    @Scheduled(cron = "0/5 * * * * ?")
+    ApiResponse findTopSimPic(Integer id) {
+        logger.info("/api/findTopSimPic id:" + id);
+        List<Pic> list = picService.findTopSimPic(id);
+        PicListDto dto = new PicListDto();
+        dto.setPics(list);
+        dto.setCount(list.size());
+        return ApiResponse.ok(dto);
+    }
+    //[{"cid":1, "picUrl":"pic1","title":"aaa"},{"cid":1, "picUrl":"pic2","title":"bbb"},{"cid":1, "picUrl":"pic3","title":"ccc"}]
+    @GetMapping(value = "/api/addPic")
+    ApiResponse addPic(String json) {
+        json = "[{\"cid\":1, \"picUrl\":\"pic1\",\"title\":\"aaa\"},{\"cid\":1, \"picUrl\":\"pic2\",\"title\":\"bbb\"},{\"cid\":1, \"picUrl\":\"pic3\",\"title\":\"ccc\"}]";
+        logger.info("/api/addPic json:" + json);
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            List<Pic> pics = mapper.readValue(json, new TypeReference<List<Pic>>() {});
+            picService.insertBatch(pics);
+        } catch (Exception e) {
+            logger.error("addPic",  e);
+        }
+        return ApiResponse.ok(1);
     }
 
 }

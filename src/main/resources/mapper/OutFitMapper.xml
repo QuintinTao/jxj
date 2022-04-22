@@ -1,28 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.tencent.wxcloudrun.dao.PicMapper">
+<mapper namespace="com.tencent.wxcloudrun.dao.OutFitMapper">
 
-    <resultMap id="PicMapper" type="com.tencent.wxcloudrun.model.Pic">
+    <resultMap id="OutFitMapper" type="com.tencent.wxcloudrun.model.OutFit">
         <id property="id" column="id"/>
-        <result property="cid" column="cid" javaType="java.lang.Integer" />
-        <result property="material" column="material" javaType="java.lang.Integer" />
-        <result property="colorSys" column="color_sys" javaType="java.lang.Integer" />
-        <result property="season" column="season" javaType="java.lang.Integer" />
+        <result property="uid" column="uid" javaType="java.lang.Integer" />
+        <result property="pid" column="pid" javaType="java.lang.String" />
+        <result property="title" column="title" javaType="java.lang.String" />
+        <result property="score" column="score" javaType="java.lang.Float" />
+        <result property="picUrl" column="pic_url" javaType="java.lang.String" />
     </resultMap>
 
-    <insert id="insert" parameterType="com.tencent.wxcloudrun.model.Pic">
-        insert into pic (cid, material, color_sys,season)
-        values (#{cid,jdbcType=INTEGER}, #{material,jdbcType=INTEGER}, #{colorSys,jdbcType=INTEGER}, #{season,jdbcType=INTEGER})
+    <insert id="insert" parameterType="com.tencent.wxcloudrun.model.OutFit">
+        insert into out_fit (uid, pid, title, score, pic_url)
+        values (#{uid,jdbcType=INTEGER}, #{pid,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{score,jdbcType=FLOAT}, #{picUrl,jdbcType=VARCHAR})
     </insert>
-    <select id="findPicByCid" resultMap="PicMapper" parameterType="java.lang.Integer">
-        SELECT `id`, `cid`, `material`, `color_sys`, `season`
-        FROM pic where cid = #{cid}
-    </select>
-    <select id="findPicById" resultMap="PicMapper" parameterType="java.lang.Integer">
-        SELECT `id`, `cid`, `material`, `color_sys`, `season`
-        FROM pic where id = #{id}
-    </select>
-    <select id="findAll" resultMap="PicMapper">
-        SELECT `id`, `cid`, `material`, `color_sys`, `season` from pic
+    <select id="findOutFitsByUId" resultMap="OutFitMapper" parameterType="java.lang.Integer">
+        SELECT a.`uid`, a.`pid`, a.`title`, a.`score`, a.`pic_url`
+        FROM out_fit a  where a.uid = #{uid}
     </select>
 </mapper>

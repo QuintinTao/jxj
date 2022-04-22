@@ -11,5 +11,7 @@ public class Review {
 
     private String content;
 
-    private Integer BookId;
+    private Integer bookId;
+
+    private Long reviewTime;
 }

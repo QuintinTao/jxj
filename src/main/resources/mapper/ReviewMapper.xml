@@ -7,10 +7,19 @@
         <result property="content" column="content" javaType="java.lang.String" />
         <result property="userId" column="user_id" javaType="java.lang.Integer" />
         <result property="bookId" column="book_id" javaType="java.lang.Integer"  />
+        <result property="reviewTime" column="review_time" javaType="java.lang.Long"  />
     </resultMap>
 
     <select id="findReviewByBookId" resultMap="ReviewMapper" parameterType="com.tencent.wxcloudrun.model.Review">
         SELECT `id`, `content`, `book_id`,`user_id`
         FROM review where book_id = #{bookId} and user_id = #{userId}
     </select>
+    <select id="findReviewByTime" resultMap="ReviewMapper">
+        SELECT `id`, `content`, `book_id`,`user_id`,`review_time`
+        FROM review where review_time &lt; (unix_timestamp(NOW()) *  1000) order by review_time desc limit 1
+    </select>
+    <insert id="insert" parameterType="com.tencent.wxcloudrun.model.Review">
+        insert into review (book_id, user_id, content, review_time)
+        values (#{bookId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{reviewTime,jdbcType=INTEGER})
+    </insert>
 </mapper>

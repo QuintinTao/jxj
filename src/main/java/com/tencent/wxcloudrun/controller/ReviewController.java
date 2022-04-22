@@ -33,11 +33,26 @@ public class ReviewController {
     @GetMapping(value = "/api/findReviewByBookId")
     ApiResponse get(Integer bookId, Integer userId, Integer familiar) {
         logger.info("/api/findReviewByBookId bookId:" + bookId + "userId:" + userId + ",familiar:" + familiar);
-        List<Review> result = reviewService.findReviewByBookId(bookId, userId, familiar);
+        List<Review> result = reviewService.findReviewByTime(familiar);
         ReviewListDto dto = new ReviewListDto();
         dto.setReviews(result);
         dto.setCount(result.size());
         return ApiResponse.ok(dto);
+    }
+
+    /**
+     * 根据book 获取Reviwe内容
+     * @return API response json
+     */
+    @GetMapping(value = "/api/addReview")
+    ApiResponse get(Integer bookId, Integer userId, String content) {
+        logger.info("/api/addReview bookId:" + bookId + "userId:" + userId + ",content:" + content);
+        Review r = new Review();
+        r.setUserId(userId);
+        r.setBookId(bookId);
+        r.setContent(content);
+        int result = reviewService.addReviewItems(r);
+        return ApiResponse.ok(result);
     }
 
 }

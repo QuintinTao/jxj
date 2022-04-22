@@ -3,14 +3,18 @@ package com.tencent.wxcloudrun.model;
 import lombok.Data;
 
 @Data
-public class Rating {
+public class OutFit {
 
     private Integer id;
 
     private Integer uid;
 
-    private Integer pid;
+    private String pid; //seperated by ,
+
+    private String picUrl;
 
     private Float score;
+
+    private String title;
 
 }

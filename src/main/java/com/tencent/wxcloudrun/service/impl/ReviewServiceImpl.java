@@ -39,6 +39,56 @@ public class ReviewServiceImpl implements ReviewService {
         }
         return reviews;
     }
+    //5min 30 12 1天 2天 4天 7 天 15天
+    @Override
+    public int addReviewItems(Review review) {
+        long time = System.currentTimeMillis();
+        //
+        Long min5 = time + 5 * 60 * 1000;
+        review.setReviewTime(min5);
+        reviewMapper.insert(review);
+        Long min30 = time + 30 * 60 * 1000;
+        review.setReviewTime(min30);
+        reviewMapper.insert(review);
+        Long min12H = time + 12 * 60 * 60 * 1000;
+        review.setReviewTime(min12H);
+        reviewMapper.insert(review);
+        Long day1 = time + 24 * 60 * 60 * 1000;
+        review.setReviewTime(day1);
+        reviewMapper.insert(review);
+        Long day2 = time + 48 * 60 * 60 * 1000;
+        review.setReviewTime(day2);
+        reviewMapper.insert(review);
+        Long day4 = time + 96 * 60 * 60 * 1000;
+        review.setReviewTime(day4);
+        reviewMapper.insert(review);
+        Long day7 = time + 168 * 60 * 60 * 1000;
+        review.setReviewTime(day7);
+        reviewMapper.insert(review);
+        Long day15 = time + 360 * 60 * 60 * 1000;
+        review.setReviewTime(day15);
+        reviewMapper.insert(review);
+        return 1;
+    }
+
+    @Override
+    public List<Review> findReviewByTime(Integer familiar) {
+        if(familiar == null) familiar = 0;
+        int replaceIndex = 0;
+        List<Review> reviews = reviewMapper.findReviewByTime();
+        if(familiar == 2){//熟悉 2/替换
+            replaceIndex = 3;
+        } else if(familiar == 1){ //模糊 4替换1
+            replaceIndex = 5;
+        } else { //不清楚，就不替换了
+            return reviews;
+        }
+        for (Review reviewBean:
+                reviews) {
+            reviewBean.setContent(extractContent(reviewBean.getContent(), replaceIndex));
+        }
+        return reviews;
+    }
 
     private String extractContent(String str, int replaceIndex){
         if(str != null) {

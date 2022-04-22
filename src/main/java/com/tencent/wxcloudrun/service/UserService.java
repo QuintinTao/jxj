@@ -8,4 +8,6 @@ import java.util.List;
 public interface UserService {
 
     int insertOrUpdate(User user);
+
+    List<User> findUserByOpenId(String openid);
 }

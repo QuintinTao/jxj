@@ -7,13 +7,6 @@ public class User {
 
     private Integer id;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     private String openid;
 
@@ -116,5 +109,14 @@ public class User {
 
     public void setRealName(String realName) {
         this.realName = realName;
+    }
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

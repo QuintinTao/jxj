@@ -9,4 +9,10 @@ import java.util.List;
 public interface ReviewMapper {
 
     List<Review> findReviewByBookId(Review review);
+
+
+    int insert(Review review);
+
+
+    List<Review> findReviewByTime();
 }

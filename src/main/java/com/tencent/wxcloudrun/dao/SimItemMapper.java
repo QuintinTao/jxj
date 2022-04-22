@@ -1,17 +1,12 @@
 package com.tencent.wxcloudrun.dao;
 
-import com.tencent.wxcloudrun.model.Pic;
+import com.tencent.wxcloudrun.model.SimItem;
 import org.apache.ibatis.annotations.Mapper;
 
-import java.util.List;
 
 @Mapper
-public interface PicMapper {
+public interface SimItemMapper {
 
-    List<Pic> findPicByCid(Integer cid);
-
-    List<Pic> findPicById(Integer id);
-
-    List<Pic> findAll();
+    int insert(SimItem simItem);
 
 }

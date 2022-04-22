@@ -1,11 +1,12 @@
 package com.tencent.wxcloudrun.service;
 
-import com.tencent.wxcloudrun.model.Pic;
+import com.tencent.wxcloudrun.model.Rating;
 
 import java.util.List;
 
-public interface PicService {
-    List<Pic> findPicByCid(Integer cid);
 
-    List<Pic> findTopSimPic(Integer id);
+public interface RatingService {
+
+    List<Rating> findAll();
+
 }

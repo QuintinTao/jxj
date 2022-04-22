@@ -15,7 +15,6 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     final UserMapper userMapper;
-
     public UserServiceImpl(@Autowired UserMapper userMapper) {
         this.userMapper = userMapper;
     }
@@ -29,4 +28,8 @@ public class UserServiceImpl implements UserService {
 
         return userMapper.insert(user);
     }
+    public List<User> findUserByOpenId(String openid){
+        return userMapper.findUserByOpenId(openid);
+    }
+
 }

@@ -1,17 +1,23 @@
 package com.tencent.wxcloudrun.dao;
 
+import com.tencent.wxcloudrun.model.Pic;
 import com.tencent.wxcloudrun.model.User;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 @Mapper
-public interface UserMapper {
+public interface PicMapper {
 
-    int insert(User Ticked);
+    List<Pic> findPicByCid(Integer cid);
 
-    int update(User Ticked);
+    List<Pic> findPicById(Integer id);
 
-    List<User> findUserByOpenId(String openid);
+    List<Pic> findAll();
+
+    int insert(Pic p);
+
+    int update(Pic p);
+
 
 }
