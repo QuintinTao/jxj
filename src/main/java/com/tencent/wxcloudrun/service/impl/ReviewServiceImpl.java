@@ -81,10 +81,10 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public List<Review> findReviewByTime(Integer familiar) {
+    public List<Review> findReviewByTime(Integer familiar,Integer start) {
         if(familiar == null) familiar = 0;
         int replaceIndex = 0;
-        List<Review> reviews = reviewMapper.findReviewByTime();
+        List<Review> reviews = reviewMapper.findReviewByTime(start);
         if(familiar == 2){//熟悉 2/替换
             replaceIndex = 3;
         } else if(familiar == 1){ //模糊 4替换1

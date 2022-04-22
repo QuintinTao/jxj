@@ -14,9 +14,9 @@
         SELECT `id`, `content`, `book_id`,`user_id`
         FROM review where book_id = #{bookId} and user_id = #{userId}
     </select>
-    <select id="findReviewByTime" resultMap="ReviewMapper">
+    <select id="findReviewByTime" resultMap="ReviewMapper" parameterType="java.lang.Integer">
         SELECT `id`, `content`, `book_id`,`user_id`,`review_time`
-        FROM review where review_time &lt; (unix_timestamp(NOW()) *  1000) order by review_time desc limit 1
+        FROM review where review_time &lt; (unix_timestamp(NOW()) *  1000) order by review_time desc limit #{start},1
     </select>
     <insert id="insert" parameterType="com.tencent.wxcloudrun.model.Review">
         insert into review (book_id, user_id, content, review_time)

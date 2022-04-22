@@ -31,9 +31,9 @@ public class ReviewController {
      * @return API response json
      */
     @GetMapping(value = "/api/findReviewByBookId")
-    ApiResponse get(Integer bookId, Integer userId, Integer familiar) {
+    ApiResponse get(Integer bookId, Integer userId, Integer familiar, Integer start) {
         logger.info("/api/findReviewByBookId bookId:" + bookId + "userId:" + userId + ",familiar:" + familiar);
-        List<Review> result = reviewService.findReviewByTime(familiar);
+        List<Review> result = reviewService.findReviewByTime(familiar,start);
         ReviewListDto dto = new ReviewListDto();
         dto.setReviews(result);
         dto.setCount(result.size());
@@ -61,7 +61,7 @@ public class ReviewController {
      */
     @GetMapping(value = "/api/submitStudy")
     ApiResponse get(Integer itemId, Integer userId) {
-        logger.info("/api/addReview itemId:" + itemId + "userId:" + userId);
+        logger.info("/api/submitStudy itemId:" + itemId + "userId:" + userId);
         int result = reviewService.findItemDetailAndCopy(itemId, userId);
         return ApiResponse.ok(result);
     }

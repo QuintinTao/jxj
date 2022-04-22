@@ -14,5 +14,5 @@ public interface ReviewMapper {
     int insert(Review review);
 
 
-    List<Review> findReviewByTime();
+    List<Review> findReviewByTime(Integer start);
 }
