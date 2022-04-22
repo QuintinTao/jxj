@@ -1,5 +1,7 @@
 package com.tencent.wxcloudrun.service.impl;
 
+import com.tencent.wxcloudrun.dao.DetailMapper;
+import com.tencent.wxcloudrun.dao.ItemMapper;
 import com.tencent.wxcloudrun.dao.ReviewMapper;
 import com.tencent.wxcloudrun.model.Detail;
 import com.tencent.wxcloudrun.model.Review;
@@ -14,9 +16,15 @@ public class ReviewServiceImpl implements ReviewService {
     public static final String sb = "_";
 
     final ReviewMapper reviewMapper;
+    final ItemMapper itemMapper;
+    final DetailMapper detailMapper;
 
-    public ReviewServiceImpl(@Autowired ReviewMapper reviewMapper) {
+    public ReviewServiceImpl(@Autowired ReviewMapper reviewMapper,
+                             @Autowired ItemMapper itemMapper,
+                             @Autowired DetailMapper detailMapper) {
         this.reviewMapper = reviewMapper;
+        this.itemMapper = itemMapper;
+        this.detailMapper = detailMapper;
     }
 
     public List<Review> findReviewByBookId(Integer bookId, Integer userId, Integer familiar){
@@ -42,6 +50,7 @@ public class ReviewServiceImpl implements ReviewService {
     //5min 30 12 1天 2天 4天 7 天 15天
     @Override
     public int addReviewItems(Review review) {
+
         long time = System.currentTimeMillis();
         //
         Long min5 = time + 5 * 60 * 1000;
@@ -88,6 +97,19 @@ public class ReviewServiceImpl implements ReviewService {
             reviewBean.setContent(extractContent(reviewBean.getContent(), replaceIndex));
         }
         return reviews;
+    }
+    //通过ItemId 找到书籍和内容
+    public int findItemDetailAndCopy(Integer itemId,Integer UserId){
+        Integer bookId = itemMapper.findBookIdByItem(itemId);
+        List<Detail> details = detailMapper.findDetailByItemId(itemId);
+        for(Detail d: details) {
+            Review r = new Review();
+            r.setBookId(bookId);
+            r.setUserId(UserId);
+            r.setContent(d.getContent());
+            this.addReviewItems(r);
+        }
+        return 1;
     }
 
     private String extractContent(String str, int replaceIndex){

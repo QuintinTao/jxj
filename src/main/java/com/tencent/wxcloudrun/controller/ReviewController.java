@@ -55,4 +55,15 @@ public class ReviewController {
         return ApiResponse.ok(result);
     }
 
+    /**
+     * 根据book 提交学习，插入复习
+     * @return API response json
+     */
+    @GetMapping(value = "/api/submitStudy")
+    ApiResponse get(Integer itemId, Integer userId) {
+        logger.info("/api/addReview itemId:" + itemId + "userId:" + userId);
+        int result = reviewService.findItemDetailAndCopy(itemId, userId);
+        return ApiResponse.ok(result);
+    }
+
 }

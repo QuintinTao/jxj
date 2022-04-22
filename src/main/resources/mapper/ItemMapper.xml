@@ -13,4 +13,9 @@
         SELECT `id`, `name`, `book_id`, `desc`
         FROM item where book_id = #{bookId}
     </select>
+
+    <select id="findBookIdByItem" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        SELECT `book_id`
+        FROM item where id = #{itemId} limit 1
+    </select>
 </mapper>

@@ -8,4 +8,5 @@ public interface ReviewService {
     List<Review> findReviewByBookId(Integer bookId, Integer userId, Integer familiar);
     int addReviewItems(Review review);
     List<Review> findReviewByTime(Integer familiar);
+    int findItemDetailAndCopy(Integer itemId,Integer UserId);
 }

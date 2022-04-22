@@ -9,4 +9,6 @@ import java.util.List;
 public interface ItemMapper {
 
     List<Item> findItemsByBookId(Integer bookId);
+
+    Integer findBookIdByItem(Integer itemId);
 }
