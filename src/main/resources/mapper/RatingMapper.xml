@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tencent.wxcloudrun.dao.PicMapper">
+
+    <resultMap id="PicMapper" type="com.tencent.wxcloudrun.model.Pic">
+        <id property="id" column="id"/>
+        <result property="cid" column="cid" javaType="java.lang.Integer" />
+        <result property="material" column="material" javaType="java.lang.Integer" />
+        <result property="colorSys" column="color_sys" javaType="java.lang.Integer" />
+        <result property="season" column="season" javaType="java.lang.Integer" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.tencent.wxcloudrun.model.Pic">
+        insert into pic (cid, material, colorSys,season)
+        values (#{cid,jdbcType=INTEGER}, #{material,jdbcType=INTEGER}, #{colorSys,jdbcType=INTEGER}, #{season,jdbcType=INTEGER})
+    </insert>
+    <select id="findPicByCid" resultMap="PicMapper" parameterType="java.lang.Integer">
+        SELECT `id`, `cid`, `material`, `colorSys`, `season`
+        FROM pic where cid = #{cid}
+    </select>
+</mapper>
