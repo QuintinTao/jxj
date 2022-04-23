@@ -29,7 +29,7 @@
         real_name = #{realName,jdbcType=VARCHAR},
         hobby = #{hobby,jdbcType=VARCHAR},
         enjoy_color = #{enjoyColor,jdbcType=VARCHAR},
-        dressing_style = #{dressing_style,jdbcType=VARCHAR}
+        dressing_style = #{dressingStyle,jdbcType=VARCHAR}
         where openid = #{openid,jdbcType=VARCHAR}
     </update>
 
