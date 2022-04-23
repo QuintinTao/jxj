@@ -20,7 +20,12 @@ public class UserServiceImpl implements UserService {
     public int insertOrUpdate(User user) {
         List<User> list = userMapper.findUserByOpenId(user.getOpenid());
         if(list != null && list.size() > 0){
-            return userMapper.updateSessionKey(user);
+            if(null != user.getSession_key()){
+                return userMapper.updateSessionKey(user);
+            } else {
+                return userMapper.update(user);
+            }
+
         }
 
         return userMapper.insert(user);
