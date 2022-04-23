@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -41,6 +43,7 @@ public class TripLogController {
         p.setStartName(startName);
         p.setEndName(endName);
         p.setEndGps(endGps);
+        p.setTripTime(new Timestamp(new Date().getTime()));
         return ApiResponse.ok(tripLogService.insert(p));
     }
 
