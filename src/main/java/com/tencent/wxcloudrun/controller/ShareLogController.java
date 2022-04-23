@@ -46,7 +46,7 @@ public class ShareLogController {
      */
     @GetMapping(value = "/api/findTopShareLogs")
     ApiResponse findTopTripLogs(){
-        logger.info("/api/findTopTripLogs");
+        logger.info("/api/findTopShareLogs");
         ShareLogListDto p = new ShareLogListDto();
         List<ShareLog> log = shareLogService.findTopShareLogs();
         p.setLogs(log);

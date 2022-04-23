@@ -96,7 +96,6 @@ public class User {
     private String hobby;
 
 
-
     private String enjoyColor;
 
     private String dressingStyle;

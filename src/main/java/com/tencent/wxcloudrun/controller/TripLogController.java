@@ -30,14 +30,16 @@ public class TripLogController {
      * 插入日志
      */
     @GetMapping(value = "/api/addTripLog")
-    ApiResponse addPlan(String startGps, String endGps, String tripName) {
-        logger.info("/api/addTripLog startGps:" + startGps + "endGps:" + endGps + ",tripName:" + tripName);
+    ApiResponse addPlan(String startGps, String endGps, String tripName,String startName, String endName) {
+        logger.info("/api/addTripLog startGps:" + startGps + "endGps:" + endGps + ",tripName:" + tripName+ ",endName:" + endName+ ",startName:" + startName);
         if(null == tripName || null == startGps || null == endGps){
             return ApiResponse.error("信息不足！");
         }
         TripLog p = new TripLog();
         p.setTripName(tripName);
         p.setStartGps(startGps);
+        p.setStartName(startName);
+        p.setEndName(endName);
         p.setEndGps(endGps);
         return ApiResponse.ok(tripLogService.insert(p));
     }

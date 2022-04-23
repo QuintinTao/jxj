@@ -12,4 +12,8 @@ public class TripLog {
     private String endGps;
 
     private String tripName;
+
+    private String startName;
+
+    private String endName;
 }
