@@ -1,10 +1,7 @@
 package com.tencent.wxcloudrun.service.impl;
 
-import com.tencent.wxcloudrun.dao.NavPointMapper;
 import com.tencent.wxcloudrun.dao.UserMapper;
-import com.tencent.wxcloudrun.model.NavPoint;
 import com.tencent.wxcloudrun.model.User;
-import com.tencent.wxcloudrun.service.NavPointService;
 import com.tencent.wxcloudrun.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +20,7 @@ public class UserServiceImpl implements UserService {
     public int insertOrUpdate(User user) {
         List<User> list = userMapper.findUserByOpenId(user.getOpenid());
         if(list != null && list.size() > 0){
-            return userMapper.update(user);
+            return userMapper.updateSessionKey(user);
         }
 
         return userMapper.insert(user);

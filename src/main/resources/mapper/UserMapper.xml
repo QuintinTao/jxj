@@ -17,7 +17,7 @@
 
     <insert id="insert" parameterType="com.tencent.wxcloudrun.model.User">
         insert into user (openid, session_key, weight,height,sex, real_name,hobby,enjoy_color,dressing_style)
-        values (#{openid,jdbcType=VARCHAR}, #{session_key,jdbcType=VARCHAR}, #{weight,jdbcType=DECIMAL}, #{height,jdbcType=INTEGER}
+        values (#{openid,jdbcType=VARCHAR}, #{sessionKey,jdbcType=VARCHAR}, #{weight,jdbcType=DECIMAL}, #{height,jdbcType=INTEGER}
         , #{sex,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR},#{enjoyColor,jdbcType=VARCHAR}, #{dressingStyle,jdbcType=VARCHAR})
     </insert>
     <update id="update" parameterType="com.tencent.wxcloudrun.model.User">
@@ -29,6 +29,12 @@
         hobby = #{hobby,jdbcType=VARCHAR},
         enjoy_color = #{enjoyColor,jdbcType=VARCHAR},
         dressing_style = #{dressingStyle,jdbcType=VARCHAR}
+        where openid = #{openid,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateSessionKey" parameterType="com.tencent.wxcloudrun.model.User">
+        update user
+        session_key = #{sessionKey,jdbcType=VARCHAR},
         where openid = #{openid,jdbcType=VARCHAR}
     </update>
 

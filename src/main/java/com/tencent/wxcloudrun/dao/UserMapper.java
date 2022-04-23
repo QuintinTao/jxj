@@ -12,6 +12,8 @@ public interface UserMapper {
 
     int update(User Ticked);
 
+    int updateSessionKey(User user);
+
     List<User> findUserByOpenId(String openid);
 
 }
