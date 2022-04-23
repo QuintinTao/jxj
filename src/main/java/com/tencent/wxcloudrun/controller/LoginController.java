@@ -61,12 +61,13 @@ public class LoginController {
 
   @GetMapping(value = "/api/addUser")
   ApiResponse addUser(String openid, Integer height, String weight,
-                      String sex, String hobby, String enjoyColor, String dressingStyle){
+                      String sex, String hobby, String enjoyColor, String dressingStyle, String realName){
       User user = new User();
       user.setHeight(height);
       user.setDressingStyle(dressingStyle);
       user.setOpenid(openid);
       user.setHobby(hobby);
+      user.setRealName(realName);
       user.setEnjoyColor(enjoyColor);
       user.setSex(sex);
       user.setWeight(new BigDecimal(weight));

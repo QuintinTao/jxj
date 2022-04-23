@@ -22,7 +22,6 @@
     </insert>
     <update id="update" parameterType="com.tencent.wxcloudrun.model.User">
         update user
-        set session_key = #{sessionKey,jdbcType=VARCHAR},
         weight = #{weight,jdbcType=DECIMAL},
         height = #{height,jdbcType=INTEGER},
         sex = #{sex,jdbcType=VARCHAR},
