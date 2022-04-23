@@ -34,7 +34,7 @@
 
     <update id="updateSessionKey" parameterType="com.tencent.wxcloudrun.model.User">
         update user
-        session_key = #{sessionKey,jdbcType=VARCHAR},
+        session_key = #{sessionKey,jdbcType=VARCHAR}
         where openid = #{openid,jdbcType=VARCHAR}
     </update>
 
