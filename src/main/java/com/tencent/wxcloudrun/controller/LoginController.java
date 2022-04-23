@@ -50,13 +50,18 @@ public class LoginController {
     logger.info("/api/doLogin" + wxServer);
     String result = restTemplate.getForObject(wxServer,String.class);
     ObjectMapper mapper = new ObjectMapper();
+    User user = null;
     try {
-      User user = mapper.readValue(result, User.class);
+      user = mapper.readValue(result, User.class);
       count = userService.insertOrUpdate(user);
+      if(count > 0) {
+          return ApiResponse.ok(user);
+      }
     } catch (Exception e) {
       logger.error("doLogin ::",  e);
+      return ApiResponse.error(e.getMessage());
     }
-    return ApiResponse.ok(count);
+    return ApiResponse.error("error");
   }
 
   @GetMapping(value = "/api/addUser")
