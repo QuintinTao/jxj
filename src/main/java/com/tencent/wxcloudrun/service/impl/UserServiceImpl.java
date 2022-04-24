@@ -17,18 +17,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int insertOrUpdate(User user) {
+    public Integer insertOrUpdate(User user) {
         List<User> list = userMapper.findUserByOpenId(user.getOpenid());
         if(list != null && list.size() > 0){
             if(null != user.getSession_key()){
-                return userMapper.updateSessionKey(user);
+                userMapper.updateSessionKey(user);
             } else {
-                return userMapper.update(user);
+                 userMapper.update(user);
             }
-
+            return list.get(0).getId();
         }
-
-        return userMapper.insert(user);
+        userMapper.insert(user);
+        return user.getId();
     }
     public List<User> findUserByOpenId(String openid){
         return userMapper.findUserByOpenId(openid);
