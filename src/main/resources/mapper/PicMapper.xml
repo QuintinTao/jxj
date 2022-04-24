@@ -5,6 +5,7 @@
     <resultMap id="PicMapper" type="com.tencent.wxcloudrun.model.Pic">
         <id property="id" column="id"/>
         <result property="cid" column="cid" javaType="java.lang.Integer" />
+        <result property="uid" column="uid" javaType="java.lang.Integer" />
         <result property="material" column="material" javaType="java.lang.Integer" />
         <result property="colorSys" column="color_sys" javaType="java.lang.Integer" />
         <result property="season" column="season" javaType="java.lang.Integer" />

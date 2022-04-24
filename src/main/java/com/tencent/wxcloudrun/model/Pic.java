@@ -8,6 +8,16 @@ public class Pic {
 
     private Integer cid;
 
+    private Integer uid;
+
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
+
     private Integer material;
 
     private Integer colorSys;
