@@ -54,6 +54,7 @@ public class LoginController {
     try {
       user = mapper.readValue(result, User.class);
       count = userService.insertOrUpdate(user);
+      user.setId(count);
       if(count > 0) {
           return ApiResponse.ok(user);
       }
