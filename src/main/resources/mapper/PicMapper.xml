@@ -36,8 +36,12 @@
         SELECT `id`, `cid`, `material`, `color_sys`, `season`, `pic_url` `title`
         FROM pic where id = #{id}
     </select>
-    <select id="findAll" resultMap="PicMapper">
+    <select id="findAll4Train" resultMap="PicMapper">
         SELECT `id`, `cid`, `material`, `color_sys`, `season` from pic where color_sys is not null and
         material is not null and season is not null
+    </select>
+    <select id="findAll4List" resultMap="PicMapper" parameterType="java.lang.Integer">
+        SELECT `id`, `cid`, `material`, `color_sys`, `season` from pic
+        where uid = #{uid} order by cid asc
     </select>
 </mapper>

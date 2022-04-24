@@ -6,9 +6,9 @@ import com.tencent.wxcloudrun.dao.SimItemMapper;
 import com.tencent.wxcloudrun.dto.SimItemDto;
 import com.tencent.wxcloudrun.model.Pic;
 import com.tencent.wxcloudrun.model.SimItem;
-import com.tencent.wxcloudrun.model.User;
 import com.tencent.wxcloudrun.service.PicService;
 import com.tencent.wxcloudrun.utils.CompareUtils;
+import com.tencent.wxcloudrun.utils.RecUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +37,7 @@ public class PicServiceImpl implements PicService {
     @Override
     public List<Pic> findTopSimPic(Integer id) {
         List<Pic> target = picMapper.findPicById(id);
-        List<Pic> list = picMapper.findAll();
+        List<Pic> list = picMapper.findAll4Train();
         Pic targetPic = null;
         if(null != target && target.size() > 0) {
             targetPic = target.get(0);
@@ -73,6 +73,11 @@ public class PicServiceImpl implements PicService {
         return null;
     }
 
+    @Override
+    public List<Pic> findAll4List(Integer uid) {
+        return picMapper.findAll4List(uid);
+    }
+
     private ArrayList<Float> obj2List(Pic p) {
         ArrayList<Float> result = new ArrayList<>();
         result.add(Float.parseFloat(p.getColorSys().toString()));
@@ -91,8 +96,11 @@ public class PicServiceImpl implements PicService {
     }
 
     public int insertBatch(List<Pic> pics){
-        for(Pic pic: pics)
-            picMapper.insert(pic);
+        for(Pic pic: pics){
+            Pic p  = pic;
+            p.setTitle(RecUtils.multiObjectDetect(pic.getPicUrl()));
+            picMapper.insert(p);
+        }
 
         return 1;
     }

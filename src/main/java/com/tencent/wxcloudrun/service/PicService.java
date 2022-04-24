@@ -10,6 +10,8 @@ public interface PicService {
 
     List<Pic> findTopSimPic(Integer id);
 
+    List<Pic> findAll4List(Integer uid);
+
     int insertOrUpdate(Pic p);
 
     int insertBatch(List<Pic> pics);

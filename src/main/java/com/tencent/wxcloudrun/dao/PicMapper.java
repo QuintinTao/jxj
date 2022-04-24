@@ -13,7 +13,9 @@ public interface PicMapper {
 
     List<Pic> findPicById(Integer id);
 
-    List<Pic> findAll();
+    List<Pic> findAll4Train();
+
+    List<Pic> findAll4List(Integer uid);
 
     int insert(Pic p);
 

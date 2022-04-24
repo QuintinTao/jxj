@@ -54,7 +54,7 @@ public class PicController {
     //[{"cid":1, "picUrl":"pic1","title":"aaa"},{"cid":1, "picUrl":"pic2","title":"bbb"},{"cid":1, "picUrl":"pic3","title":"ccc"}]
     @GetMapping(value = "/api/addPic")
     ApiResponse addPic(String json) {
-        json = "[{\"cid\":1, \"picUrl\":\"pic1\",\"title\":\"aaa\"},{\"cid\":1, \"picUrl\":\"pic2\",\"title\":\"bbb\"},{\"cid\":1, \"picUrl\":\"pic3\",\"title\":\"ccc\"}]";
+       // json = "[{\"cid\":1, \"picUrl\":\"pic1\"},{\"cid\":1, \"picUrl\":\"pic2\"},{\"cid\":1, \"picUrl\":\"pic3\"}]";
         logger.info("/api/addPic json:" + json);
         ObjectMapper mapper = new ObjectMapper();
         try {
@@ -64,6 +64,16 @@ public class PicController {
             logger.error("addPic",  e);
         }
         return ApiResponse.ok(1);
+    }
+    //todo
+    @GetMapping(value = "/api/findAllMyPics")
+    ApiResponse findAllMyPics(Integer uid) {
+        logger.info("/api/findAllMyPics uid:" + uid);
+        List<Pic> list = picService.findAll4List(uid);
+        PicListDto dto = new PicListDto();
+        dto.setPics(list);
+        dto.setCount(list.size());
+        return ApiResponse.ok(dto);
     }
 
 }
