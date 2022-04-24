@@ -1,9 +1,11 @@
 package com.tencent.wxcloudrun.utils;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import java.net.URLEncoder;
 
-import org.springframework.boot.configurationprocessor.json.JSONArray;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -59,7 +61,7 @@ public class RecUtils {
                  * 返回结果示例
                  */
                 System.err.println("result:" + result);
-                JSONObject jsonObject = new JSONObject(result);
+                JSONObject jsonObject = JSONObject.fromObject(result);
                 String access_token = jsonObject.getString("access_token");
                 return access_token;
             } catch (Exception e) {
@@ -90,8 +92,8 @@ public class RecUtils {
             String accessToken = "24.fd8ce6e1f05c8a0abebbf2511a24c46c.2592000.1653362239.282335-26042702";
 
             String result = HttpUtil.post(url, accessToken, param);
-            JSONObject obj = new JSONObject(result);
-            JSONArray array = new JSONArray(obj.getString("result"));
+            JSONObject obj = JSONObject.fromObject(result);
+            JSONArray array = JSONArray.fromObject(obj.getString("result"));
             JSONObject objTarget = array.getJSONObject(0);
             result = (String)objTarget.get("name");
             System.out.println(result);
