@@ -21,11 +21,11 @@
 
     <update id="update" parameterType="com.tencent.wxcloudrun.model.Pic">
         update pic
-        set material = #{sessionKey,jdbcType=INTEGER},
-        color_sys = #{weight,jdbcType=INTEGER},
-        season = #{height,jdbcType=INTEGER},
-        cid = #{sex,jdbcType=INTEGER},
-        title = #{title,jdbcType=VARCHAR},
+        set material = #{material,jdbcType=INTEGER},
+        color_sys = #{colorSys,jdbcType=INTEGER},
+        season = #{season,jdbcType=INTEGER},
+        cid = #{cid,jdbcType=INTEGER},
+        title = #{title,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
 

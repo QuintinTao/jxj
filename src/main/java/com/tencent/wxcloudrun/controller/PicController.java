@@ -84,5 +84,19 @@ public class PicController {
         dto.setCount(list.size());
         return ApiResponse.ok(dto);
     }
+    @GetMapping(value = "/api/updatePic")
+    ApiResponse updatePic(Integer id, Integer cid, Integer season, Integer material,
+                          Integer colorSys, String title) {
+        logger.info("/api/updatePic id:" + id);
+        Pic pic = new Pic();
+        pic.setId(id);
+        pic.setColorSys(colorSys);
+        pic.setCid(cid);
+        pic.setTitle(title);
+        pic.setMaterial(material);
+        pic.setSeason(season);
+        int count = picService.insertOrUpdate(pic);
+        return ApiResponse.ok(count);
+    }
 
 }
