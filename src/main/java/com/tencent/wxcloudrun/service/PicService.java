@@ -8,6 +8,8 @@ public interface PicService {
 
     List<Pic> findPicByCid(Integer cid);
 
+    List<Pic> findPicById(Integer id);
+
     List<Pic> findTopSimPic(Integer id);
 
     List<Pic> findAll4List(Integer uid);

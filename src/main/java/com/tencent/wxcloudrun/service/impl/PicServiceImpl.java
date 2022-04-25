@@ -104,4 +104,7 @@ public class PicServiceImpl implements PicService {
 
         return 1;
     }
+    public List<Pic> findPicById(Integer id){
+          return picMapper.findPicById(id);
+    }
 }

@@ -65,6 +65,15 @@ public class PicController {
         }
         return ApiResponse.ok(1);
     }
+    @GetMapping(value = "/api/findPicById")
+    ApiResponse findPicById(Integer id) {
+        logger.info("/api/findPicById id:" + id);
+        List<Pic> list = picService.findPicById(id);
+        PicListDto dto = new PicListDto();
+        dto.setPics(list);
+        dto.setCount(list.size());
+        return ApiResponse.ok(dto);
+    }
     //todo
     @GetMapping(value = "/api/findAllMyPics")
     ApiResponse findAllMyPics(Integer uid) {

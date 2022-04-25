@@ -9,7 +9,9 @@ public class CoreMath {
 
     public List<Integer> recommend(Integer userId, List<Rating> list) {
         //找到最近邻用户id
+        List<Integer> recommendList = new ArrayList<>();
         Map<Double, Integer> distances = computeNearestNeighbor(userId, list);
+        if(null == distances || distances.size() == 0) return recommendList;
         Integer nearest = distances.values().iterator().next();
 
         Map<Integer, List<Rating>>  userMap = list.stream().collect(Collectors.groupingBy(Rating::getUid));
@@ -20,7 +22,7 @@ public class CoreMath {
         List<Integer>  userItemList  = userMap.get(userId).stream().map(e->e.getPid()).collect(Collectors.toList());;
 
         //找到最近邻看过，但是该用户没看过的item，计算推荐，放入推荐列表
-        List<Integer> recommendList = new ArrayList<>();
+
         for (Integer item : neighborItemList) {
             if (!userItemList.contains(item)) {
                 recommendList.add(item);
@@ -40,9 +42,9 @@ public class CoreMath {
     private Map<Double, Integer> computeNearestNeighbor(Integer userId, List<Rating> list) {
         Map<Integer, List<Rating>>  userMap=list.stream().collect(Collectors.groupingBy(Rating::getUid));
         Map<Double, Integer> distances = new TreeMap<>();
-        userMap.forEach((k,v)->{
-            if(k != userId){
-                double distance = pearson_dis(v,userMap.get(userId));
+        userMap.forEach((k,v)-> {
+            if(k != userId && userMap.get(userId) != null){
+                double distance = pearson_dis(v, userMap.get(userId));
                 distances.put(distance, k);
             }
         });

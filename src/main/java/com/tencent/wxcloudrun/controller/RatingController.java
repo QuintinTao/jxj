@@ -26,6 +26,7 @@ public class RatingController {
     @GetMapping(value = "/api/findRecommends")
     ApiResponse findRecommends(Integer uid) {
         logger.info("/api/findRecommends uid:" + uid);
+        if(null == uid || "".equals(uid)) return ApiResponse.ok(new PicListDto());
         List<Pic> list = ratingService.gUserLike(uid);
         PicListDto dto = new PicListDto();
         dto.setPics(list);
