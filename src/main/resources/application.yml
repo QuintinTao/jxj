@@ -7,9 +7,9 @@ spring:
     name: nav
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/recommend
-    username: root
-    password: root
+    url: jdbc:mysql://${MYSQL_ADDRESS}/${MYSQL_DATABASE:springboot_demo}
+    username: ${MYSQL_USERNAME}
+    password: ${MySQL_PASSWORD}
 #  mvc:
 #    view:
 #      suffix: .html
