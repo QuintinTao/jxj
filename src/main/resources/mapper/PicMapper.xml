@@ -38,7 +38,7 @@
         FROM pic where id = #{id}
     </select>
     <select id="findAll4Train" resultMap="PicMapper">
-        SELECT `id`, `uid`,`cid`, `material`, `color_sys`, `season` from pic where color_sys is not null and
+        SELECT `id`, `uid`,`cid`, `material`, `color_sys`, `season` , `pic_url` from pic where color_sys is not null and
         material is not null and season is not null
     </select>
     <select id="findAll4List" resultMap="PicMapper" parameterType="java.lang.Integer">
