@@ -17,4 +17,7 @@ public interface PicService {
     int insertOrUpdate(Pic p);
 
     int insertBatch(List<Pic> pics);
+
+
+    int deleteById(Integer id);
 }

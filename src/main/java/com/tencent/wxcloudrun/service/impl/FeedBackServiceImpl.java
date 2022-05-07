@@ -9,6 +9,8 @@ import com.tencent.wxcloudrun.service.PlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FeedBackServiceImpl implements FeedBackService {
 
@@ -25,5 +27,10 @@ public class FeedBackServiceImpl implements FeedBackService {
     public int insert(FeedBack fb) {
 
        return feedBackMapper.insert(fb);
+    }
+
+    @Override
+    public List<FeedBack> findFeedBackList() {
+        return feedBackMapper.findFeedBackList();
     }
 }

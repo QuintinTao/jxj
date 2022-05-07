@@ -104,6 +104,12 @@ public class PicServiceImpl implements PicService {
 
         return 1;
     }
+
+    @Override
+    public int deleteById(Integer id) {
+        return picMapper.deleteById(id);
+    }
+
     public List<Pic> findPicById(Integer id){
           return picMapper.findPicById(id);
     }

@@ -21,5 +21,5 @@ public interface PicMapper {
 
     int update(Pic p);
 
-
+    int deleteById(Integer id);
 }

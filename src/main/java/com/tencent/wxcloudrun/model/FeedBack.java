@@ -10,6 +10,16 @@ public class FeedBack {
 
     private String question;
 
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    private String user;
+
     public String getfTimeStr() {
         return fTimeStr;
     }

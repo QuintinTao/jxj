@@ -99,4 +99,11 @@ public class PicController {
         return ApiResponse.ok(count);
     }
 
+    @GetMapping(value = "/api/deletePic")
+    ApiResponse deletePic(Integer id) {
+        logger.info("/api/deletePic id:" + id);
+        int count = picService.deleteById(id);
+        return ApiResponse.ok(count);
+    }
+
 }
