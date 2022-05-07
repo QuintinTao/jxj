@@ -30,10 +30,11 @@ public class FeedBackController {
 
     @GetMapping(value = "/api/addFeedBack")
     ApiResponse addPlan(String feedback, String question, String nickName) {
-        logger.info("/api/addFeedBack feedback:" + feedback + "question:" + question);
+        logger.info("/api/addFeedBack feedback:" + feedback + "question:" + question + "nickName:" + nickName);
         FeedBack p = new FeedBack();
         p.setFeedback(feedback);
         p.setQuestion(question);
+        p.setUser(nickName);
         p.setfTime(new Timestamp(new Date().getTime()));
         return ApiResponse.ok(feedBackService.insert(p));
     }
