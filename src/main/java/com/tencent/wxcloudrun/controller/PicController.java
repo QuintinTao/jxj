@@ -86,10 +86,11 @@ public class PicController {
     }
     @GetMapping(value = "/api/updatePic")
     ApiResponse updatePic(Integer id, Integer cid, Integer season, Integer material,
-                          Integer colorSys, String title) {
+                          Integer colorSys, String title, Integer sex) {
         logger.info("/api/updatePic id:" + id);
         Pic pic = new Pic();
         pic.setId(id);
+        pic.setSex(sex);
         pic.setColorSys(colorSys);
         pic.setCid(cid);
         pic.setTitle(title);
