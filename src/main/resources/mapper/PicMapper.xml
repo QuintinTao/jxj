@@ -7,6 +7,7 @@
         <result property="cid" column="cid" javaType="java.lang.Integer" />
         <result property="uid" column="uid" javaType="java.lang.Integer" />
         <result property="material" column="material" javaType="java.lang.Integer" />
+        <result property="sex" column="sex" javaType="java.lang.Integer" />
         <result property="colorSys" column="color_sys" javaType="java.lang.Integer" />
         <result property="season" column="season" javaType="java.lang.Integer" />
         <result property="picUrl" column="pic_url" javaType="java.lang.String" />
@@ -24,25 +25,26 @@
         set material = #{material,jdbcType=INTEGER},
         color_sys = #{colorSys,jdbcType=INTEGER},
         season = #{season,jdbcType=INTEGER},
+        sex = #{sex,jdbcType=INTEGER},
         cid = #{cid,jdbcType=INTEGER},
         title = #{title,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
 
     <select id="findPicByCid" resultMap="PicMapper" parameterType="java.lang.Integer">
-        SELECT `id`,`uid` ,`cid`, `material`, `color_sys`, `season`, `pic_url` `title`
+        SELECT `id`,`uid` ,`cid`, `material`, `color_sys`, `season`, `pic_url`,`title`,`sex`
         FROM pic where cid = #{cid}
     </select>
     <select id="findPicById" resultMap="PicMapper" parameterType="java.lang.Integer">
-        SELECT `id`, `uid`,`cid`, `material`, `color_sys`, `season`, `pic_url`,`title`
+        SELECT `id`, `uid`,`cid`, `material`, `color_sys`, `season`, `pic_url`,`title`,`sex`
         FROM pic where id = #{id}
     </select>
     <select id="findAll4Train" resultMap="PicMapper">
-        SELECT `id`, `uid`,`cid`, `material`, `color_sys`, `season` , `pic_url` from pic where color_sys is not null and
+        SELECT `id`, `uid`,`cid`, `material`, `color_sys`, `season` , `pic_url` ,`sex`from pic where color_sys is not null and
         material is not null and season is not null
     </select>
     <select id="findAll4List" resultMap="PicMapper" parameterType="java.lang.Integer">
-        SELECT `id`, `uid`,`cid`, `material`, `color_sys`, `season`, `pic_url`,`title` from pic
+        SELECT `id`, `uid`,`cid`, `material`, `color_sys`, `season`, `pic_url`,`title`,`sex` from pic
         where uid = #{uid} order by cid asc
     </select>
     <delete id="deleteById"  parameterType="java.lang.Integer">

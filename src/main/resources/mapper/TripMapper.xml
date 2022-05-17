@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tencent.wxcloudrun.dao.TripMapper">
+
+    <resultMap id="TripMapper" type="com.tencent.wxcloudrun.model.Trip">
+        <id property="id" column="id"/>
+        <result property="startGps" column="start_gps" javaType="java.lang.String" />
+        <result property="endGps" column="end_gps" javaType="java.lang.String" />
+        <result property="cost" column="cost" javaType="java.math.BigDecimal" />
+        <result property="startTime" column="start_time" javaType="java.sql.Timestamp" />
+        <result property="endTime" column="end_time" javaType="java.sql.Timestamp" />
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.tencent.wxcloudrun.model.Trip">
+        insert into trip (start_gps, end_gps, cost, start_time,end_time)
+        values (#{startGps,jdbcType=VARCHAR}, #{endGps,jdbcType=VARCHAR},#{cost,jdbcType=DECIMAL}
+        , #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <select id="findTopTrips" resultMap="TripMapper">
+        SELECT `id`, `start_gps`,`end_gps`,`cost`,`end_time`,`start_time`
+        FROM trip order by id desc limit 20
+    </select>
+
+    <update id="update" parameterType="com.tencent.wxcloudrun.model.Trip">
+        update trip set
+        end_gps = #{endGps,jdbcType=VARCHAR},
+        cost = #{cost,jdbcType=DECIMAL},
+        end_time = #{endTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

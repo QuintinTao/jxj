@@ -10,6 +10,16 @@ public class Pic {
 
     private Integer uid;
 
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
+    private Integer sex;
+
     public Integer getUid() {
         return uid;
     }
