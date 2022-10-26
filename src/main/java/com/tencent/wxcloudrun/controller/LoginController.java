@@ -46,7 +46,7 @@ public class LoginController {
   ApiResponse doLogin(String js_code){
     logger.info("/api/doLogin" + js_code);
     Integer count = 0;
-    String wxServer = "https://api.weixin.qq.com/sns/jscode2session?appid=wxbd7344e4c63064bb&secret=398312c98aa75c6d418e5e9716957e76&js_code="+js_code+"&grant_type=authorization_code";
+    String wxServer = "https://api.weixin.qq.com/sns/jscode2session?appid=wx39ce54f8ade59743&secret=6ea3d486384db4d5962cceae82527e47&js_code="+js_code+"&grant_type=authorization_code";
     logger.info("/api/doLogin" + wxServer);
     String result = restTemplate.getForObject(wxServer,String.class);
     ObjectMapper mapper = new ObjectMapper();
