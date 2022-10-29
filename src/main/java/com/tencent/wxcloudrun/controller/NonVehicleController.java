@@ -50,7 +50,7 @@ public class NonVehicleController {
     nv.setName(name);
     nv.setSno(sno);
     nv.setNovNum(novNum);
-    nv.setStarTime(new Timestamp(Long.parseLong(startTimeStr)));
+    nv.setStarTime(toDate(startTimeStr));
       int result = nonVehicleService.bindNonVehicle(nv);
       if (result == 0){
           ApiResponse.error("绑定失败！");
@@ -71,7 +71,7 @@ public class NonVehicleController {
         nv.setName(name);
         nv.setSno(sno);
         nv.setNovNum(novNum);
-        nv.setStarTime(new Timestamp(Long.parseLong(startTimeStr)));
+        nv.setStarTime(toDate(startTimeStr));
         nonVehicleService.unbindNonVehicle(nv);
         return ApiResponse.ok();
     }
