@@ -50,7 +50,7 @@ public class NonVehicleController {
     nv.setName(name);
     nv.setSno(sno);
     nv.setNovNum(novNum);
-    nv.setStarTime(toDate(startTimeStr));
+    nv.setStarTime(new Timestamp(Long.parseLong(startTimeStr)));
     return ApiResponse.ok(nonVehicleService.bindNonVehicle(nv));
   }
     @GetMapping(value = "/api/unBindNonVehicle")
@@ -67,7 +67,7 @@ public class NonVehicleController {
         nv.setName(name);
         nv.setSno(sno);
         nv.setNovNum(novNum);
-        nv.setStarTime(toDate(startTimeStr));
+        nv.setStarTime(new Timestamp(Long.parseLong(startTimeStr)));
         nonVehicleService.unbindNonVehicle(nv);
         return ApiResponse.ok();
     }
@@ -103,6 +103,4 @@ public class NonVehicleController {
         }
         return null;
     }
-
-
 }
