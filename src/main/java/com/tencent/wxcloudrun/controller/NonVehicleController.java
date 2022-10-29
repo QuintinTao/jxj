@@ -51,6 +51,10 @@ public class NonVehicleController {
     nv.setSno(sno);
     nv.setNovNum(novNum);
     nv.setStarTime(new Timestamp(Long.parseLong(startTimeStr)));
+      int result = nonVehicleService.bindNonVehicle(nv);
+      if (result == 0){
+          ApiResponse.error("绑定失败！");
+      }
     return ApiResponse.ok(nonVehicleService.bindNonVehicle(nv));
   }
     @GetMapping(value = "/api/unBindNonVehicle")

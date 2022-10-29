@@ -37,9 +37,11 @@ public class NonVehicleServiceImpl implements NonVehicleService {
             BeanUtils.copyProperties(his,nonVehicle);
         } catch (Exception e) {
             logger.error("unbindNonVehicle bean copy error!", e);
+            return 0;
         }
         if(num > 0) {
             nonVehicleHisMapper.insert(his);
+            return 0;
         }
         return nonVehicle.getId();
     }
