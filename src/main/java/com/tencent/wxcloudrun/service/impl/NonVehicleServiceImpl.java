@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 
@@ -31,7 +32,14 @@ public class NonVehicleServiceImpl implements NonVehicleService {
 
     @Override
     public int bindNonVehicle(NonVehicle nonVehicle) {
-        int num = nonVehicleMapper.insert(nonVehicle);
+        int num;
+        try {
+            num = nonVehicleMapper.insert(nonVehicle);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+
         NonVehicleHis his = new NonVehicleHis();
         try {
             BeanUtils.copyProperties(his,nonVehicle);
