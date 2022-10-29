@@ -53,7 +53,7 @@ public class NonVehicleController {
     nv.setStarTime(toDate(startTimeStr));
       int result = nonVehicleService.bindNonVehicle(nv);
       if (result == 0){
-          ApiResponse.error("绑定失败！");
+          return ApiResponse.error("绑定失败！");
       }
     return ApiResponse.ok(nonVehicleService.bindNonVehicle(nv));
   }
