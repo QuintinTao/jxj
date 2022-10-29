@@ -22,8 +22,8 @@
         FROM trip order by id desc limit 20
     </select>
     <select id="findNonVehicleByNum" resultMap ="NonVehicleMapper" parameterType="java.lang.String">
-        SELECT `id`, `name`,`nov_num`,`sno`,`dept`,`start_name`
-        FROM non_vehicle_his where nov_num = #{novNum} limit 1
+        SELECT `id`, `name`,`nov_num`,`sno`,`dept`,`start_time`
+        FROM non_vehicle where nov_num = #{novNum} limit 1
     </select>
 
     <update id="update" parameterType="com.tencent.wxcloudrun.model.Trip">
