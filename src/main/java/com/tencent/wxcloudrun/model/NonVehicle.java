@@ -10,6 +10,20 @@ public class NonVehicle {
 
     private String name;
 
+    @Override
+    public String toString() {
+        return "NonVehicle{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", novNum='" + novNum + '\'' +
+                ", sno='" + sno + '\'' +
+                ", dept='" + dept + '\'' +
+                ", starTimeStr='" + starTimeStr + '\'' +
+                ", pov='" + pov + '\'' +
+                ", starTime=" + starTime +
+                '}';
+    }
+
     private String novNum;
 
     private String sno;
