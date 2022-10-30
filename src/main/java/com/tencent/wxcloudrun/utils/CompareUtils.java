@@ -87,9 +87,9 @@ public class CompareUtils {
         return (collection == null || collection.isEmpty());
     }
     //传入日期，计算有效期，4年
-    public static String calPeriodOfValidity(Timestamp starTime){
-
-    }
+//    public static String calPeriodOfValidity(Timestamp starTime){
+//
+//    }
 
 
 }
