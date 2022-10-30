@@ -49,8 +49,8 @@ public class NonVehicleServiceImpl implements NonVehicleService {
         logger.info(nonVehicle.toString());
         if(num > 0) {
             nonVehicleHisMapper.insert(his);
-//            return nonVehicle.getId();
-            return 1;
+            return nonVehicle.getId();
+//            return 1;
         }
         return 0;
     }
