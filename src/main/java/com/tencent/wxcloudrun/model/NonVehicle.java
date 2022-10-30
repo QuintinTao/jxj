@@ -17,6 +17,8 @@ public class NonVehicle {
     private String dept;
 
     private String starTimeStr;
+    //有效期
+    private String pov;
 
     public String getStarTimeStr() {
         return starTimeStr;

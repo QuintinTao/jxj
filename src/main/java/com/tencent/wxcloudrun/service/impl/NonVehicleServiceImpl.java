@@ -49,9 +49,10 @@ public class NonVehicleServiceImpl implements NonVehicleService {
         }
         if(num > 0) {
             nonVehicleHisMapper.insert(his);
-            return 0;
+            return nonVehicle.getId();
+
         }
-        return nonVehicle.getId();
+        return 0;
     }
 
     @Override

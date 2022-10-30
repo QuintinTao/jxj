@@ -4,6 +4,7 @@ import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -84,6 +85,10 @@ public class CompareUtils {
 
     public static final Boolean  isEmpty(Collection<?> collection){
         return (collection == null || collection.isEmpty());
+    }
+    //传入日期，计算有效期，4年
+    public static String calPeriodOfValidity(Timestamp starTime){
+
     }
 
 
