@@ -8,13 +8,12 @@ import java.util.HashMap;
 public final class ApiResponse {
 
   private Integer code;
-  private String msg;
+  private String errorMsg;
   private Object data;
-  private Integer count = 100;
 
-  private ApiResponse(int code, String msg, Object data) {
+  private ApiResponse(int code, String errorMsg, Object data) {
     this.code = code;
-    this.msg = msg;
+    this.errorMsg = errorMsg;
     this.data = data;
   }
   
@@ -27,6 +26,6 @@ public final class ApiResponse {
   }
 
   public static ApiResponse error(String errorMsg) {
-    return new ApiResponse(1, errorMsg, new HashMap<>());
+    return new ApiResponse(0, errorMsg, new HashMap<>());
   }
 }
