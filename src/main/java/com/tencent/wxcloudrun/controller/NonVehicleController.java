@@ -55,7 +55,7 @@ public class NonVehicleController {
       if (result == 0){
           return ApiResponse.error("绑定失败！车辆已与其他用户绑定！");
       }
-    return ApiResponse.ok(nonVehicleService.bindNonVehicle(nv));
+    return ApiResponse.ok(result);
   }
     @GetMapping(value = "/api/unBindNonVehicle")
     ApiResponse get(
