@@ -8,7 +8,7 @@ import com.tencent.wxcloudrun.model.Pic;
 import com.tencent.wxcloudrun.model.SimItem;
 import com.tencent.wxcloudrun.service.PicService;
 import com.tencent.wxcloudrun.utils.CompareUtils;
-import com.tencent.wxcloudrun.utils.RecUtils;
+//import com.tencent.wxcloudrun.utils.RecUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -98,7 +98,7 @@ public class PicServiceImpl implements PicService {
     public int insertBatch(List<Pic> pics){
         for(Pic pic: pics){
             Pic p  = pic;
-            p.setTitle(RecUtils.multiObjectDetect(pic.getPicUrl()));
+           // p.setTitle(RecUtils.multiObjectDetect(pic.getPicUrl()));
             picMapper.insert(p);
         }
 
