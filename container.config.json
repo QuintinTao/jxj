@@ -5,11 +5,21 @@
 	
 	"containerPort": 80,                            
 	"minNum": 0,                                    
-	"maxNum": 50,                                   
+	"maxNum": 5,                                   
 	"cpu": 1,                                    	
 	"mem": 2,                                     	
 	"policyType": "cpu",                            
-	"policyThreshold": 60,                          
+	"policyThreshold": 50,
+	"policyDetails": [
+		{
+			"PolicyType": "cpu",
+			"PolicyThreshold": 50
+		},
+		{
+			"PolicyType": "mem",
+			"PolicyThreshold": 50
+		}
+	],
 	"envParams": {},                                
 	"customLogs": "stdout",                         
 	"dataBaseName":"springboot_demo",               
