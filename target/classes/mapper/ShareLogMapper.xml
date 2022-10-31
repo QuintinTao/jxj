@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tencent.wxcloudrun.dao.ShareLogMapper">
+
+    <resultMap id="ShareLogMapper" type="com.tencent.wxcloudrun.model.ShareLog">
+        <id property="id" column="id"/>
+        <result property="shareTime" column="share_time" javaType="java.sql.Timestamp" />
+        <result property="fromStr" column="from_str" javaType="java.lang.String" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.tencent.wxcloudrun.model.ShareLog">
+        insert into share_log (share_time, from_str)
+        values (#{shareTime,jdbcType=TIMESTAMP}, #{fromStr,jdbcType=VARCHAR})
+    </insert>
+
+    <select id="findTopShareLogs" resultMap="ShareLogMapper">
+        SELECT `id`, `share_time`,`from_str`
+        FROM share_log order by id desc limit 20
+    </select>
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tencent.wxcloudrun.dao.TripLogMapper">
+
+    <resultMap id="TripLogMapper" type="com.tencent.wxcloudrun.model.TripLog">
+        <id property="id" column="id"/>
+        <result property="startGps" column="start_gps" javaType="java.lang.String" />
+        <result property="tripName" column="trip_name" javaType="java.lang.String" />
+        <result property="endGps" column="end_gps" javaType="java.lang.String" />
+        <result property="startName" column="start_Name" javaType="java.lang.String" />
+        <result property="endName" column="end_Name" javaType="java.lang.String" />
+        <result property="tripTime" column="trip_time" javaType="java.sql.Timestamp" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.tencent.wxcloudrun.model.TripLog">
+        insert into trip_log (start_gps, trip_name, end_gps, start_name,end_name,trip_time)
+        values (#{startGps,jdbcType=VARCHAR}, #{tripName,jdbcType=VARCHAR}, #{endGps,jdbcType=VARCHAR},#{startName,jdbcType=VARCHAR}
+        , #{endName,jdbcType=VARCHAR}, #{tripTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <select id="findTopTripLogs" resultMap="TripLogMapper">
+        SELECT `id`, `start_gps`,`end_gps`,`trip_name`,`end_name`,`start_name`,`trip_time`
+        FROM trip_log order by id desc limit 20
+    </select>
+</mapper>

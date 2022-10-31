@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tencent.wxcloudrun.dao.NavPointMapper">
+
+    <resultMap id="NavPointMapper" type="com.tencent.wxcloudrun.model.NavPoint">
+        <id property="pid" column="pid"/>
+        <result property="cid" column="cid" javaType="java.lang.Integer" />
+        <result property="pointName" column="point_name" javaType="java.lang.String" />
+        <result property="latitude" column="latitude" javaType="java.lang.String" />
+        <result property="longitude" column="longitude" javaType="java.lang.String" />
+        <result property="pointImage" column="point_image" javaType="java.lang.String" />
+        <result property="address" column="address" javaType="java.lang.String" />
+        <result property="story" column="story" javaType="java.lang.String" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.tencent.wxcloudrun.model.NavPoint">
+        insert into nav_point (cid, point_name, latitude,longitude,point_image,address,story)
+        values (#{cid,jdbcType=INTEGER}, #{pointName,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR},
+        #{longitude,jdbcType=VARCHAR}, #{pointImage,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{story,jdbcType=VARCHAR})
+    </insert>
+
+    <select id="findAllNavPoints" resultMap="NavPointMapper">
+        SELECT `pid`,`cid`, `point_name`, `latitude`, `longitude`,`point_image`,`address`,`story`
+        FROM nav_point
+    </select>
+</mapper>

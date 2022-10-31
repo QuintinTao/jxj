@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tencent.wxcloudrun.dao.RatingMapper">
+
+    <resultMap id="RatingMapper" type="com.tencent.wxcloudrun.model.Rating">
+        <id property="id" column="id"/>
+        <result property="uid" column="uid" javaType="java.lang.Integer" />
+        <result property="pid" column="pid" javaType="java.lang.Integer" />
+        <result property="score" column="score" javaType="java.lang.Float" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.tencent.wxcloudrun.model.Rating">
+        insert into rating (uid, pid, score)
+        values (#{uid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{score,jdbcType=FLOAT})
+    </insert>
+    <select id="findAll" resultMap="RatingMapper">
+        SELECT `id`, `uid`, `pid`, `score`
+        FROM rating
+    </select>
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tencent.wxcloudrun.dao.SimItemMapper">
+
+    <resultMap id="SimItemMapper" type="com.tencent.wxcloudrun.model.SimItem">
+        <id property="id" column="id"/>
+        <result property="pid" column="pid" javaType="java.lang.Integer" />
+        <result property="sim1" column="sim1" javaType="java.lang.Integer" />
+        <result property="sim2" column="sim2" javaType="java.lang.Integer" />
+        <result property="sim3" column="sim3" javaType="java.lang.Integer" />
+        <result property="sim4" column="sim4" javaType="java.lang.Integer" />
+        <result property="sim5" column="sim5" javaType="java.lang.Integer" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.tencent.wxcloudrun.model.SimItem">
+        insert into sim_item (pid, sim1, sim2, sim3, sim4, sim5)
+        values (#{pid,jdbcType=INTEGER}, #{sim1,jdbcType=INTEGER}, #{sim2,jdbcType=INTEGER}
+        , #{sim3,jdbcType=INTEGER}, #{sim4,jdbcType=INTEGER}, #{sim5,jdbcType=INTEGER})
+    </insert>
+<!--    <select id="findAll" resultMap="SimItemMapper">-->
+<!--        SELECT `id`, `uid`, `pid`, `score`-->
+<!--        FROM rating-->
+<!--    </select>-->
+</mapper>

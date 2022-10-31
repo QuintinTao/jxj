@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tencent.wxcloudrun.dao.UserMapper">
+
+    <resultMap id="UserMapper" type="com.tencent.wxcloudrun.model.User">
+        <id property="id" column="id"/>
+        <result property="openid" column="openid" javaType="java.lang.String" />
+        <result property="sessionKey" column="session_key" javaType="java.lang.String" />
+        <result property="weight" column="weight" javaType="java.math.BigDecimal" />
+        <result property="height" column="height" javaType="java.lang.Integer" />
+        <result property="sex" column="sex" javaType="java.lang.String" />
+        <result property="realName" column="real_name" javaType="java.lang.String" />
+        <result property="hobby" column="hobby" javaType="java.lang.String" />
+        <result property="enjoyColor" column="enjoy_color" javaType="java.lang.String" />
+        <result property="dressingStyle" column="dressing_style" javaType="java.lang.String" />
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.tencent.wxcloudrun.model.User">
+<!--        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">-->
+<!--            SELECT LAST_INSERT_ID()-->
+<!--        </selectKey>-->
+        insert into user (openid, session_key, weight,height,sex, real_name,hobby,enjoy_color,dressing_style)
+        values (#{openid,jdbcType=VARCHAR}, #{sessionKey,jdbcType=VARCHAR}, #{weight,jdbcType=DECIMAL}, #{height,jdbcType=INTEGER}
+        , #{sex,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR},#{enjoyColor,jdbcType=VARCHAR}, #{dressingStyle,jdbcType=VARCHAR})
+    </insert>
+    <update id="update" parameterType="com.tencent.wxcloudrun.model.User">
+        update user set
+        weight = #{weight,jdbcType=DECIMAL},
+        height = #{height,jdbcType=INTEGER},
+        sex = #{sex,jdbcType=VARCHAR},
+        real_name = #{realName,jdbcType=VARCHAR},
+        hobby = #{hobby,jdbcType=VARCHAR},
+        enjoy_color = #{enjoyColor,jdbcType=VARCHAR},
+        dressing_style = #{dressingStyle,jdbcType=VARCHAR}
+        where openid = #{openid,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateSessionKey" parameterType="com.tencent.wxcloudrun.model.User">
+        update user set
+        session_key = #{sessionKey,jdbcType=VARCHAR}
+        where openid = #{openid,jdbcType=VARCHAR}
+    </update>
+
+    <select id="findUserByOpenId" resultMap="UserMapper" parameterType="java.lang.String">
+        SELECT `id`, `openid`, `session_key`, `weight`, `height`, `sex`
+        , `real_name`, `hobby`, `enjoy_color`, `dressing_style`
+        FROM user where openid = #{openid}
+    </select>
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tencent.wxcloudrun.dao.OutFitMapper">
+
+    <resultMap id="OutFitMapper" type="com.tencent.wxcloudrun.model.OutFit">
+        <id property="id" column="id"/>
+        <result property="uid" column="uid" javaType="java.lang.Integer" />
+        <result property="pid" column="pid" javaType="java.lang.String" />
+        <result property="title" column="title" javaType="java.lang.String" />
+        <result property="score" column="score" javaType="java.lang.Float" />
+        <result property="picUrl" column="pic_url" javaType="java.lang.String" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.tencent.wxcloudrun.model.OutFit">
+        insert into out_fit (uid, pid, title, score, pic_url)
+        values (#{uid,jdbcType=INTEGER}, #{pid,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{score,jdbcType=FLOAT}, #{picUrl,jdbcType=VARCHAR})
+    </insert>
+    <select id="findOutFitsByUId" resultMap="OutFitMapper" parameterType="java.lang.Integer">
+        SELECT a.`uid`, a.`pid`, a.`title`, a.`score`, a.`pic_url`
+        FROM out_fit a  where a.uid = #{uid}
+    </select>
+</mapper>
