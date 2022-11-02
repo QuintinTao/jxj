@@ -5,10 +5,8 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.Timestamp;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class CompareUtils {
 
@@ -87,9 +85,17 @@ public class CompareUtils {
         return (collection == null || collection.isEmpty());
     }
     //传入日期，计算有效期，4年
-//    public static String calPeriodOfValidity(Timestamp starTime){
-//
-//    }
+    public static String calPeriodOfValidity(Timestamp starTime, int addYear){
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(starTime);
+        cal.add(Calendar.YEAR, 4);
+        Date date = cal.getTime();
+        return df.format(date);
+    }
 
-
+    public static void main(String[] args) {
+        Timestamp t = new Timestamp(1667267417000L);
+        System.out.println(CompareUtils.calPeriodOfValidity(t,4));
+    }
 }

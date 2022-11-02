@@ -1,5 +1,7 @@
 package com.tencent.wxcloudrun.model;
 
+import com.tencent.wxcloudrun.utils.CompareUtils;
+
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,6 +33,15 @@ public class NonVehicle {
     private String dept;
 
     private String starTimeStr;
+
+    public String getPov() {
+        return pov;
+    }
+
+    public void setPov(String pov) {
+        this.pov = pov;
+    }
+
     //有效期
     private String pov;
 
@@ -90,6 +101,7 @@ public class NonVehicle {
 
     public void setStarTime(Timestamp starTime) {
         this.starTime = starTime;
+        this.pov = CompareUtils.calPeriodOfValidity(starTime, 4);
         this.starTimeStr = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss").format(new Date(starTime.getTime()));
     }
 }
