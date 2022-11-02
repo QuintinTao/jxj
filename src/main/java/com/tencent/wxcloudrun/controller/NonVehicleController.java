@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.thymeleaf.util.StringUtils;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -59,20 +60,15 @@ public class NonVehicleController {
   }
     @GetMapping(value = "/api/unBindNonVehicle")
     ApiResponse get(
-            String name,
-            String novNum,
-            String sno,
-            String dept,
-            String startTimeStr
+            String id
     ) {
         logger.info("/api/unBindNonVehicle");
-        NonVehicle nv = new NonVehicle();
-        nv.setDept(dept);
-        nv.setName(name);
-        nv.setSno(sno);
-        nv.setNovNum(novNum);
-        nv.setStarTime(toDate(startTimeStr));
-        nonVehicleService.unbindNonVehicle(nv);
+        if(!StringUtils.isEmpty(id)) {
+            Integer idd = Integer.parseInt(id);
+            NonVehicle nv = new NonVehicle();
+            nv.setId(idd);
+            nonVehicleService.unbindNonVehicle(nv);
+        }
         return ApiResponse.ok();
     }
 
