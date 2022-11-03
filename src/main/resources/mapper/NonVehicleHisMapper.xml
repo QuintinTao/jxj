@@ -26,6 +26,6 @@
     </update>
     <select id = "findHis" resultMap="NonVehicleHisMapper" parameterType="java.lang.String">
         SELECT `id`, `name`,`nov_num`,`sno`,`dept`,`start_time`
-        FROM non_vehicle_his where where nov_num = #{novNum} order by id desc limit 20
+        FROM non_vehicle_his where nov_num = #{novNum} order by id desc limit 20
     </select>
 </mapper>
