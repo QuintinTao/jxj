@@ -25,7 +25,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <select id = "findHis" resultMap="NonVehicleHisMapper" parameterType="java.lang.String">
-        SELECT `id`, `name`,`nov_num`,`sno`,`dept`,`start_name`
-        FROM non_vehicle_his order by id desc limit 20
+        SELECT `id`, `name`,`nov_num`,`sno`,`dept`,`start_time`
+        FROM non_vehicle_his where where nov_num = #{novNum} order by id desc limit 20
     </select>
 </mapper>
