@@ -93,9 +93,16 @@ public class CompareUtils {
         Date date = cal.getTime();
         return df.format(date);
     }
+    public static String  sensitiveProtection(String target){
+        if(target != null && target.length() > 1) {
+            return target.replace(target.charAt(1), '*');
+        }
+        return target;
+    }
 
     public static void main(String[] args) {
-        Timestamp t = new Timestamp(1667267417000L);
-        System.out.println(CompareUtils.calPeriodOfValidity(t,4));
+//        Timestamp t = new Timestamp(1667267417000L);
+//        System.out.println(CompareUtils.calPeriodOfValidity(t,4));
+        System.out.println(sensitiveProtection("黄征往"));
     }
 }
