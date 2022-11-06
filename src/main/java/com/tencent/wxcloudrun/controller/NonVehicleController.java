@@ -94,7 +94,7 @@ public class NonVehicleController {
     private Timestamp toDate(String dateString) {
         Date date = new Date();
         //注意format的格式要与日期String的格式相匹配
-        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
             date = sdf.parse(dateString);
             return new Timestamp(date.getTime());
