@@ -53,7 +53,7 @@ public class NonVehicleHis {
     }
 
     public void setName(String name) {
-        this.name = CompareUtils.sensitiveProtection(name);
+        this.name = name;
     }
 
     public String getNovNum() {
@@ -69,7 +69,7 @@ public class NonVehicleHis {
     }
 
     public void setSno(String sno) {
-        this.sno = CompareUtils.sensitiveProtection(sno);
+        this.sno = sno;
     }
 
     public String getDept() {

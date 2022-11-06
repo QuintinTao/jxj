@@ -100,9 +100,16 @@ public class CompareUtils {
         return target;
     }
 
+    public static String  sensitiveProtectionMuti(String target){
+        if(target != null && target.length() > 3) {
+            return target.replace(target.charAt(1), '*').replace(target.charAt(2),'*').replace(target.charAt(3),'*');
+        }
+        return target;
+    }
+
     public static void main(String[] args) {
 //        Timestamp t = new Timestamp(1667267417000L);
 //        System.out.println(CompareUtils.calPeriodOfValidity(t,4));
-        System.out.println(sensitiveProtection("黄征往"));
+        System.out.println(sensitiveProtectionMuti("13889290880"));
     }
 }
