@@ -43,7 +43,8 @@ public class NonVehicleController {
           String novNum,
           String sno,
           String dept,
-          String startTimeStr
+          String startTimeStr,
+          String pass
 ) {
     logger.info("/api/bindNonVehicle");
     NonVehicle nv = new NonVehicle();
@@ -51,6 +52,7 @@ public class NonVehicleController {
     nv.setName(name);
     nv.setSno(sno);
     nv.setNovNum(novNum);
+    nv.setPass(pass);
     nv.setStarTime(toDate(startTimeStr));
       int result = nonVehicleService.bindNonVehicle(nv);
       if (result == 0){
