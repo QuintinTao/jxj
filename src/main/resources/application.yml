@@ -7,15 +7,20 @@ spring:
     name: nav
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/qr
-    username: root
-    password: root
-#  mvc:
-#    view:
-#      suffix: .html
-#      prefix: /
+    url: jdbc:mysql://${MYSQL_ADDRESS}/${MYSQL_DATABASE:springboot_demo}
+    username: ${MYSQL_USERNAME}
+    password: ${MySQL_PASSWORD}
+  #  mvc:
+  #    view:
+  #      suffix: .html
+  #      prefix: /
   thymeleaf:
     prefix: classpath:/view/
+  mvc:
+    view:
+      suffix: .html
+      prefix: /
 
 mybatis:
   mapper-locations: classpath*:mapper/*Mapper.xml
+
