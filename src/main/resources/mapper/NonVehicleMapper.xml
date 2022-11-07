@@ -13,9 +13,9 @@
     </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.tencent.wxcloudrun.model.NonVehicle">
-        insert into non_vehicle (name, nov_num, sno, dept,start_time)
+        insert into non_vehicle (name, nov_num, sno, dept,start_time,pass)
         values (#{name,jdbcType=VARCHAR}, #{novNum,jdbcType=VARCHAR},#{sno,jdbcType=VARCHAR}
-        , #{dept,jdbcType=VARCHAR}, #{starTime,jdbcType=TIMESTAMP})
+        , #{dept,jdbcType=VARCHAR}, #{starTime,jdbcType=TIMESTAMP},#{pass,jdbcType=VARCHAR})
     </insert>
 
     <select id="findTopTrips" resultMap="NonVehicleMapper">
