@@ -56,8 +56,23 @@ public class NonVehicleServiceImpl implements NonVehicleService {
     }
 
     @Override
-    public void unbindNonVehicle(NonVehicle nonVehicle) {
-            nonVehicleMapper.deleteById(nonVehicle.getId());
+    public int unbindNonVehicle(NonVehicle nonVehicle) {
+            List<NonVehicle> list = nonVehicleMapper.findNonVehicleById(nonVehicle.getId());
+            if(list != null && list.size() > 0) {
+                NonVehicle vehicleQuery = list.get(0);
+                if(nonVehicle.getPass().equals(vehicleQuery.getPass())){
+                    try {
+                        nonVehicleMapper.deleteById(nonVehicle.getId());
+                        return 2;
+                    } catch (Exception e) {
+                        logger.error("unbindNonVehicle", e);
+                        //unbind error delete error;
+                        return 0;
+                    }
+                }
+            }
+            // didn't get any records.
+            return 1;
     }
 
     @Override

@@ -60,16 +60,19 @@ public class NonVehicleController {
   }
     @GetMapping(value = "/api/unBindNonVehicle")
     ApiResponse get(
-            String id
+            String id, String pass
     ) {
-        logger.info("/api/unBindNonVehicle");
+        logger.info("/api/unBindNonVehicle" + id + pass);
         if(!StringUtils.isEmpty(id)) {
             Integer idd = Integer.parseInt(id);
             NonVehicle nv = new NonVehicle();
+            nv.setPass(pass);
             nv.setId(idd);
-            nonVehicleService.unbindNonVehicle(nv);
+           int result = nonVehicleService.unbindNonVehicle(nv);
+           if(result == 2)  return ApiResponse.ok();
+           if(result == 1)  return ApiResponse.error("密码不正确！");
         }
-        return ApiResponse.ok();
+        return ApiResponse.error("密码不正确！");
     }
 
     @GetMapping(value = "/api/findNonVehicleByNum")

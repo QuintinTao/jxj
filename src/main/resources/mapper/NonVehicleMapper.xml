@@ -37,4 +37,9 @@
     <delete id="deleteById">
         delete from non_vehicle where id = #{id}
     </delete>
+
+    <select id="findNonVehicleById" resultMap ="NonVehicleMapper" parameterType="java.lang.Integer">
+        SELECT `id`, `name`,`nov_num`,`sno`,`dept`,`start_time`,`pass`
+        FROM non_vehicle where id = #{id}
+    </select>
 </mapper>

@@ -10,7 +10,7 @@ public interface NonVehicleService {
 
   int bindNonVehicle(NonVehicle nonVehicle);
 
-  void unbindNonVehicle(NonVehicle nonVehicle);
+  int unbindNonVehicle(NonVehicle nonVehicle);
 
 
   List<NonVehicle> findNonVehicleByNum(String novNum);

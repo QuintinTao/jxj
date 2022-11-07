@@ -42,8 +42,18 @@ public class NonVehicle {
         this.pov = pov;
     }
 
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
     //有效期
     private String pov;
+
+    private String pass;
 
     public String getStarTimeStr() {
         return starTimeStr;

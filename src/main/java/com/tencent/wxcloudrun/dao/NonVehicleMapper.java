@@ -17,4 +17,6 @@ public interface NonVehicleMapper {
     void deleteById(int id);
 
     List<NonVehicle> findNonVehicleByNum(String novNum);
+
+    List<NonVehicle> findNonVehicleById(Integer id);
 }
