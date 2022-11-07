@@ -9,6 +9,7 @@
         <result property="sno" column="sno" javaType="java.lang.String" />
         <result property="dept" column="dept" javaType="java.lang.String" />
         <result property="starTime" column="start_time" javaType="java.sql.Timestamp" />
+        <result property="pass" column="pass" javaType="java.lang.String" />
     </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.tencent.wxcloudrun.model.NonVehicleHis">

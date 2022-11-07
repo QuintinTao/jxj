@@ -22,6 +22,16 @@ public class NonVehicleHis {
 
     private String pov;
 
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    private String pass;
+
     public String getPov() {
         return pov;
     }
