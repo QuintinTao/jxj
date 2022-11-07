@@ -51,7 +51,7 @@ public class NonVehicle {
     }
 
     public void setNameStr(String nameStr) {
-        this.nameStr = CompareUtils.sensitiveProtection(nameStr);
+        this.nameStr = nameStr;
     }
 
     public String getSnoStr() {
@@ -59,7 +59,7 @@ public class NonVehicle {
     }
 
     public void setSnoStr(String snoStr) {
-        this.snoStr = CompareUtils.sensitiveProtectionMuti(snoStr);
+        this.snoStr = snoStr;
     }
 
     public String getPass() {
@@ -99,6 +99,7 @@ public class NonVehicle {
 
     public void setName(String name) {
         this.name = name;
+        this.nameStr = CompareUtils.sensitiveProtection(nameStr);
     }
 
     public String getNovNum() {
@@ -115,6 +116,7 @@ public class NonVehicle {
 
     public void setSno(String sno) {
         this.sno = sno;
+        this.snoStr = CompareUtils.sensitiveProtectionMuti(snoStr);
     }
 
     public String getDept() {
