@@ -99,7 +99,7 @@ public class NonVehicle {
 
     public void setName(String name) {
         this.name = name;
-        this.nameStr = CompareUtils.sensitiveProtection(nameStr);
+        this.nameStr = CompareUtils.sensitiveProtection(name);
     }
 
     public String getNovNum() {
@@ -116,7 +116,7 @@ public class NonVehicle {
 
     public void setSno(String sno) {
         this.sno = sno;
-        this.snoStr = CompareUtils.sensitiveProtectionMuti(snoStr);
+        this.snoStr = CompareUtils.sensitiveProtectionMuti(sno);
     }
 
     public String getDept() {
